@@ -2,14 +2,13 @@ extends KinematicBody2D
 
 
 onready var sprite = $AnimatedSprite
+onready var reticle = $Reticle
 
-onready var screen = get_viewport_rect().size
-
-export (float) var wind_speed: float = 10
-export (float) var wind_speed_value: float = 11
+export (float) var wind_speed: float = 7
+export (float) var boost: float = 4
 export (float) var rotation_speed: float = 10
-export (float) var weight: float = 100
-export (float) var gravity: float = 100
+export (float) var weight: float = 25
+export (float) var gravity: float = 25
 export (bool) var alive: bool = true
 
 var velocity = Vector2()
@@ -25,6 +24,11 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("right"):
 			rotation += 0.15
 
+		if Input.is_action_pressed("Boost"):
+			position -= transform.y * (wind_speed + boost)
+		else:
+			position -= transform.y * wind_speed
+
 		rotation += rotation_direction * rotation_speed
 
 		velocity.y += gravity * delta
@@ -32,13 +36,16 @@ func _physics_process(delta):
 			velocity.y = weight
 
 		velocity = move_and_slide(velocity, UP)
-		
-		position -= transform.y * wind_speed
 
-		position.x = wrapf(position.x, -512, screen.x)
-		position.y = wrapf(position.y, -512, screen.y)
+		if global_position.y >= 446 or global_position.y <= -446:
+			queue_free()
+
+		# Screenwrapping
+		global_position.x = wrapf(position.x, -380, 380)
 
 		set_rot()
+
+		reticle.rotation += 0.005
 
 
 func set_rot():
