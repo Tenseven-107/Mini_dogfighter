@@ -9,10 +9,12 @@ export (PackedScene) var bullet: PackedScene
 export (int) var new_shake: int = 100
 export (float) var shake_time: float = 0.06
 export (int) var shake_limit: int = 200
+export (bool) var screenshake: bool = true
 
 export (float) var fire_rate: float = 0.1
+var team: int = 0
 
-onready var main = null
+var main = null
 
 
 func _ready():
@@ -26,11 +28,13 @@ func attack():
 		var bullet_inst = bullet.instance()
 		bullet_inst.global_transform = muzzle.global_transform
 		bullet_inst.rotation += rand_range(0.0, 0.1)
+		bullet_inst.team = self.team
 
 		main.add_child(bullet_inst)
 
 		sound.play()
-		GlobalSignals.emit_signal("camera_shake", new_shake, shake_time, shake_limit)
+		if screenshake:
+			GlobalSignals.emit_signal("camera_shake", new_shake, shake_time, shake_limit)
 
 
 func initialize(main_object):

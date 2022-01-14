@@ -3,7 +3,7 @@ extends Node2D
 
 onready var anim = $AnimationPlayer
 
-export (int) var damage: int = 50
+export (int) var damage: int = 30
 
 
 func _ready():

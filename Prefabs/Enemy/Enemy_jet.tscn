@@ -1,0 +1,108 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://Prefabs/Weapons/Enemy_projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/FX_logic/Trail_renderer.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/Enemy_sprites/Mini_enemy_jet.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/FX/Thrust_flame.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/Weapons/Enemy_Gun-1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Enemy_logic/Enemy_jet_logic.gd" type="Script" id=7]
+
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 2.35227, 0.0, 0, 0 ]
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 4 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 4 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 4 ) ],
+"loop": true,
+"name": "Flame",
+"speed": 5.0
+} ]
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 3 )
+region = Rect2( 42, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 3 )
+region = Rect2( 84, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 3 )
+region = Rect2( 126, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 3 )
+region = Rect2( 168, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 3 )
+region = Rect2( 210, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 3 )
+region = Rect2( 252, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 3 )
+region = Rect2( 294, 0, 42, 42 )
+
+[sub_resource type="SpriteFrames" id=29]
+animations = [ {
+"frames": [ SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Enemy_jet" type="KinematicBody2D" groups=["Enemies"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource( 7 )
+
+[node name="Fly_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Trail" type="Line2D" parent="."]
+z_index = -1
+width = 8.0
+width_curve = SubResource( 17 )
+default_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+target_path = NodePath("..")
+trail_length = 6
+
+[node name="Flame" type="AnimatedSprite" parent="."]
+position = Vector2( 7.43866e-05, 22 )
+rotation = -1.5708
+frames = SubResource( 20 )
+animation = "Flame"
+speed_scale = 2.0
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 29 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, -7, 7, 0, 0, 7, -7, 0 )
+
+[node name="Gun" parent="." instance=ExtResource( 6 )]
+position = Vector2( 0, -14 )
+rotation = -1.5708
+bullet = ExtResource( 1 )
+team = 1

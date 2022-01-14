@@ -6,6 +6,7 @@ onready var tween = $Tween
 
 export (int) var damage: int = 10
 export (int) var speed = 1000
+var team: int = 0
 
 
 func _ready():
@@ -28,4 +29,4 @@ func _on_Tween_tween_all_completed():
 
 func _on_Bullet_body_entered(body: Node):
 	if body.has_method("handle_hit"):
-		body.handle_hit(damage)
+		body.handle_hit(damage, team)

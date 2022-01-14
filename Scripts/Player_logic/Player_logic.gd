@@ -19,6 +19,7 @@ onready var main = get_parent()
 
 export (int) var hp: int = 100
 export (int) var max_hp: int = 100
+export (int, 0, 1) var team: int = 0
 
 export (float) var wind_speed: float = 7
 export (float) var boost: float = 6
@@ -35,6 +36,10 @@ var rotation_direction = 0
 func _ready():
 	gun.initialize(main)
 	gun2.initialize(main)
+
+	gun.team = team
+	gun2.team = team
+
 	sound_1.playing = true
 
 
@@ -93,8 +98,8 @@ func _physics_process(delta):
 
 
 # Damage control
-func handle_hit(damage: int):
-	if i_frame.is_stopped():
+func handle_hit(damage: int, projectile_team: int):
+	if i_frame.is_stopped() or projectile_team != self.team:
 		hp -= damage
 		i_frame.start()
 
@@ -104,7 +109,7 @@ func handle_hit(damage: int):
 func die():
 	var explosion_inst = explosion.instance()
 	explosion_inst.global_position = self.global_position
-	main.add_child(explosion_inst)
+	main.call_deferred("add_child", explosion_inst)
 
 	queue_free()
 
