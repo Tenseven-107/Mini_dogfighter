@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dont_go_down_there.wav-94fc3ff7e7fe8f224b4ec4281fe934e6.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Dont_go_down_there.wav"
+dest_files=[ "res://.import/Dont_go_down_there.wav-94fc3ff7e7fe8f224b4ec4281fe934e6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

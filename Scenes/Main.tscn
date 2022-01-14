@@ -118,7 +118,7 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=16]
 shader = SubResource( 15 )
-shader_param/line_color = Color( 0, 0, 0, 1 )
+shader_param/line_color = Color( 0.188235, 0.172549, 0.180392, 1 )
 shader_param/line_thickness = 2.0
 
 [node name="Main" type="Node2D"]
@@ -154,5 +154,6 @@ texture = ExtResource( 3 )
 motion_mirroring = Vector2( 730, 0 )
 
 [node name="Sky-1" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+modulate = Color( 0.937255, 0.937255, 0.937255, 1 )
 material = SubResource( 16 )
 texture = ExtResource( 5 )

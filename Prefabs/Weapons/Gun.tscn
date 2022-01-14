@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/Weapons/Gun.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/Weapons/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sounds/SFX/Machine_gun_sound-1_bass.wav" type="AudioStream" id=3]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=4]
 
-[node name="Gun" type="Node2D" groups=[
-"Gun",
-]]
+[node name="Gun" type="Node2D" groups=["Gun"]]
 script = ExtResource( 1 )
 bullet = ExtResource( 2 )
+fire_rate = 0.12
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
@@ -15,3 +16,11 @@ one_shot = true
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 8, 0 )
+
+[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 8, 0 )
+bus = "SFX-1"
+script = ExtResource( 4 )
+samples = [ ExtResource( 3 ) ]
+random_strategy = 1
+random_pitch_range = 0.7

@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var sprite = $AnimatedSprite
+onready var sprite = $Sprite
 onready var flame = $Flame
 onready var reticle = $Reticle
 
@@ -8,6 +8,9 @@ onready var i_frame = $I_frame_timer
 
 onready var gun = $Gun
 onready var gun2 = $Gun2
+
+onready var sound_1 = $AudioStreamPlayer2D
+onready var anim = $Anim_player
 
 onready var main = get_parent()
 
@@ -29,6 +32,7 @@ var rotation_direction = 0
 func _ready():
 	gun.initialize(main)
 	gun2.initialize(main)
+	sound_1.playing = true
 
 
 func _physics_process(delta):
@@ -46,16 +50,20 @@ func _physics_process(delta):
 		if Input.is_action_pressed("Boost"):
 			flame.playing = true
 			flame.show()
+			sound_1.pitch_scale = 1.5
 
 			position -= transform.y * (wind_speed + boost)
 		elif Input.is_action_pressed("Fire"):
 			gun.attack()
 			gun2.attack()
+
 			flame.hide()
+			sound_1.pitch_scale = 1
 
 			position -= transform.y * (wind_speed / 2)
 		else:
 			flame.hide()
+			sound_1.pitch_scale = 1
 
 			position -= transform.y * wind_speed
 
@@ -68,7 +76,10 @@ func _physics_process(delta):
 
 		velocity = move_and_slide(velocity, UP)
 
-		if global_position.y >= 446 or global_position.y <= -446:
+
+		if global_position.y > 225 or global_position.y <= -225:
+			anim.play("Stalling")
+		if global_position.y >= 245 or global_position.y <= -245:
 			queue_free()
 
 		set_rot()

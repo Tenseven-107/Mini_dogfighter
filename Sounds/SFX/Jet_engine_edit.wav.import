@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Jet_engine_edit.wav-ec9ff8e0873a11878ee2db07d33e390a.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Jet_engine_edit.wav"
+dest_files=[ "res://.import/Jet_engine_edit.wav-ec9ff8e0873a11878ee2db07d33e390a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
