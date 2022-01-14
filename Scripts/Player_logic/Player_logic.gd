@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+
+export (PackedScene) var explosion: PackedScene = preload("res://Prefabs/FX/Explosion.tscn")
+
 onready var sprite = $Sprite
 onready var flame = $Flame
 onready var reticle = $Reticle
@@ -80,7 +83,7 @@ func _physics_process(delta):
 		if global_position.y > 225 or global_position.y <= -225:
 			anim.play("Stalling")
 		if global_position.y >= 245 or global_position.y <= -245:
-			queue_free()
+			die()
 
 		set_rot()
 		reticle.rotation += 0.005
@@ -96,7 +99,14 @@ func handle_hit(damage: int):
 		i_frame.start()
 
 		if hp <= 0:
-			queue_free()
+			die()
+
+func die():
+	var explosion_inst = explosion.instance()
+	explosion_inst.global_position = self.global_position
+	main.add_child(explosion_inst)
+
+	queue_free()
 
 
 # Setting the plane sprites
