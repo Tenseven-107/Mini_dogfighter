@@ -5,6 +5,7 @@ export (PackedScene) var explosion: PackedScene = preload("res://Prefabs/FX/Expl
 
 onready var sprite = $Sprite
 onready var flame = $Flame
+onready var anims = $Anims
 
 onready var gun = $Gun
 
@@ -13,8 +14,8 @@ onready var fly_timer = $Fly_timer
 var main = null
 var point_net = null
 
-export (int) var hp: int = 20
-export (int) var max_hp: int = 20
+export (int) var hp: int = 30
+export (int) var max_hp: int = 30
 export (int, 0, 1) var team: int = 1
 
 export (float) var wind_speed: float = 8
@@ -62,6 +63,7 @@ func _physics_process(delta):
 func handle_hit(damage: int, projectile_team: int):
 	if projectile_team != self.team:
 		hp -= damage
+		anims.play("Hit")
 
 		if hp <= 0:
 			die()

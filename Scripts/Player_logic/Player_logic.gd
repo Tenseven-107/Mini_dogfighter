@@ -14,12 +14,18 @@ onready var gun2 = $Gun2
 
 onready var sound_1 = $AudioStreamPlayer2D
 onready var anim = $Anim_player
+onready var hitstop = $Hitstop
 
 onready var main = get_parent()
 
 export (int) var hp: int = 100
 export (int) var max_hp: int = 100
 export (int, 0, 1) var team: int = 0
+
+export (float) var fuel: float = 100
+export (float) var max_fuel: float = 100
+export (bool) var immortal: bool = false
+export (bool) var fuel_max: bool = true
 
 export (float) var wind_speed: float = 7
 export (float) var boost: float = 6
@@ -55,11 +61,13 @@ func _physics_process(delta):
 			rotation += 0.15
 
 		# Actions
-		if Input.is_action_pressed("Boost"):
+		if Input.is_action_pressed("Boost") and !fuel <= 0 and fuel_max:
 			flame.playing = true
 			flame.show()
 			sound_1.pitch_scale = 1.5
 
+			immortal = true
+			fuel -= 0.5
 			position -= transform.y * (wind_speed + boost)
 		elif Input.is_action_pressed("Fire"):
 			gun.attack()
@@ -68,11 +76,13 @@ func _physics_process(delta):
 			flame.hide()
 			sound_1.pitch_scale = 1
 
+			immortal = false
 			position -= transform.y * (wind_speed / 2)
 		else:
 			flame.hide()
 			sound_1.pitch_scale = 1
 
+			immortal = false
 			position -= transform.y * wind_speed
 
 		# General
@@ -86,7 +96,8 @@ func _physics_process(delta):
 
 
 		if global_position.y > 225 or global_position.y <= -225:
-			anim.play("Stalling")
+			if i_frame.is_stopped():
+				anim.play("Stalling")
 		if global_position.y >= 245 or global_position.y <= -245:
 			die()
 
@@ -96,12 +107,24 @@ func _physics_process(delta):
 		# Screenwrapping
 		global_position.x = wrapf(position.x, -380, 380)
 
+		# Fuel regeneration
+		if not immortal and fuel < max_fuel:
+			fuel += 0.2
+			fuel_max = false
+		elif fuel >= max_fuel:
+			fuel_max = true
+
 
 # Damage control
 func handle_hit(damage: int, projectile_team: int):
-	if i_frame.is_stopped() or projectile_team != self.team:
+	if i_frame.is_stopped() and projectile_team != self.team and not immortal:
 		hp -= damage
 		i_frame.start()
+
+		hitstop.interpolate_property(Engine, "time_scale", 0, 1, 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		hitstop.start()
+		GlobalSignals.emit_signal("camera_shake", 2000, 0.05, 2000)
+		anim.play("Hit")
 
 		if hp <= 0:
 			die()

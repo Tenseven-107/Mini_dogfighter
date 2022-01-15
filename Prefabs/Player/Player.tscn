@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Prefabs/Weapons/Gun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Player_sprites/Mini_jet.png" type="Texture" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://Sounds/SFX/Watch_out.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sounds/SFX/Dont_go_down_there.wav" type="AudioStream" id=11]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=12]
+[ext_resource path="res://Sprites/FX/Hit_spark.png" type="Texture" id=13]
+[ext_resource path="res://Sounds/SFX/Player_hit-2.wav" type="AudioStream" id=14]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 2.35227, 0.0, 0, 0 ]
@@ -35,6 +37,23 @@ animations = [ {
 "name": "Flame",
 "speed": 5.0
 } ]
+
+[sub_resource type="Shader" id=21]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=22]
+shader = SubResource( 21 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_strength = 0.0
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
@@ -109,6 +128,95 @@ shader = SubResource( 15 )
 shader_param/line_color = Color( 0.188235, 0.172549, 0.180392, 1 )
 shader_param/line_thickness = 1.0
 
+[sub_resource type="Curve" id=23]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0869565, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=28]
+curve = SubResource( 23 )
+
+[sub_resource type="ParticlesMaterial" id=25]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 500.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 310.6
+angle_random = 1.0
+scale = 0.5
+scale_random = 1.0
+scale_curve = SubResource( 28 )
+
+[sub_resource type="Animation" id=26]
+resource_name = "Hit"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/hit_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hit_particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("RandomAudioStreamPlayer2D2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/hit_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
 [sub_resource type="Animation" id=20]
 length = 2.5
 step = 0.05
@@ -155,7 +263,7 @@ tracks/2/keys = {
 script = ExtResource( 3 )
 
 [node name="I_frame_timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 1.5
 one_shot = true
 
 [node name="Trail" type="Line2D" parent="."]
@@ -175,6 +283,7 @@ animation = "Flame"
 speed_scale = 2.0
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+material = SubResource( 22 )
 frames = SubResource( 14 )
 animation = "default_1"
 
@@ -184,6 +293,7 @@ polygon = PoolVector2Array( -1.74846e-07, -4, 4, -1.74846e-07, 1.74846e-07, 4, -
 [node name="Reticle" type="Sprite" parent="."]
 material = SubResource( 16 )
 position = Vector2( -3.8147e-06, -72 )
+z_index = 5
 texture = ExtResource( 4 )
 
 [node name="ExclamationMark" type="Sprite" parent="."]
@@ -201,7 +311,19 @@ rotation = -1.5708
 position = Vector2( 5.99996, -10 )
 rotation = -1.5708
 
+[node name="Hit_particles" type="Particles2D" parent="."]
+emitting = false
+amount = 20
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 25 )
+texture = ExtResource( 13 )
+
+[node name="Hitstop" type="Tween" parent="."]
+
 [node name="Anim_player" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 26 )
+anims/RESET = SubResource( 27 )
 anims/Stalling = SubResource( 20 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -214,3 +336,9 @@ bus = "SFX-2"
 script = ExtResource( 12 )
 samples = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ) ]
 random_strategy = 1
+
+[node name="RandomAudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+volume_db = 2.0
+script = ExtResource( 12 )
+samples = [ ExtResource( 14 ) ]
+random_pitch_range = 2.0
