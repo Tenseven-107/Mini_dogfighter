@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sounds/SFX/Dive.wav" type="AudioStream" id=1]
+[ext_resource path="res://Sprites/FX/Water_droplet.png" type="Texture" id=2]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/FX_logic/Water_splash_logic.gd" type="Script" id=4]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.75, 0.494318 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 170.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 1.5
+scale_random = 1.0
+scale_curve = SubResource( 2 )
+hue_variation = -0.02
+hue_variation_random = 1.0
+
+[sub_resource type="Animation" id=4]
+resource_name = "Splash"
+length = 2.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Particles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("RandomAudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Water_splash" type="Node2D"]
+z_index = -1
+script = ExtResource( 4 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+amount = 20
+lifetime = 3.0
+explosiveness = 1.0
+process_material = SubResource( 3 )
+texture = ExtResource( 2 )
+
+[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX-2"
+script = ExtResource( 3 )
+samples = [ ExtResource( 1 ) ]
+random_volume_range = 0.1
+random_pitch_range = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Splash = SubResource( 4 )

@@ -98,3 +98,5 @@ text = "PILOT 1"
 __meta__ = {
 "_edit_use_anchors_": true
 }
+
+[node name="Health_tween" type="Tween" parent="HUD"]

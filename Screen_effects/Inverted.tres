@@ -1,0 +1,13 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[resource]
+background_mode = 4
+adjustment_enabled = true
+adjustment_brightness = 0.9
+adjustment_color_correction = SubResource( 2 )

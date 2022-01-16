@@ -201,6 +201,18 @@ tracks/3/keys = {
 "method": "play"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("ExclamationMark:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=27]
 length = 0.001
@@ -300,7 +312,7 @@ texture = ExtResource( 4 )
 visible = false
 material = SubResource( 17 )
 scale = Vector2( 1e-05, 1e-05 )
-z_index = 2
+z_index = 5
 texture = ExtResource( 9 )
 
 [node name="Gun" parent="." instance=ExtResource( 1 )]
@@ -341,4 +353,4 @@ random_strategy = 1
 volume_db = 2.0
 script = ExtResource( 12 )
 samples = [ ExtResource( 14 ) ]
-random_pitch_range = 2.0
+random_pitch_range = 1.0
