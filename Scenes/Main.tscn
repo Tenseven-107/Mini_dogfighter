@@ -7,12 +7,12 @@
 [ext_resource path="res://Sprites/Misc/Sky-1.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Element_logic/Nav_net_logic.gd" type="Script" id=6]
 [ext_resource path="res://Sprites/Tiles/Tileset.png" type="Texture" id=7]
-[ext_resource path="res://Prefabs/Enemy/Enemy_jet.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Element_logic/Enemy_container_logic.gd" type="Script" id=9]
 [ext_resource path="res://Screen_effects/Default_effect.tres" type="Environment" id=10]
 [ext_resource path="res://Prefabs/UI/HUD.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Sounds/Music/Place_holder/BossMain.wav" type="AudioStream" id=12]
 [ext_resource path="res://Prefabs/FX/Splash_zone.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Prefabs/Elements/Enemy_spawner.tscn" type="PackedScene" id=15]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -197,11 +197,10 @@ position = Vector2( 200, -124 )
 [node name="Position2D14" type="Position2D" parent="Nav_points"]
 position = Vector2( 0, -124 )
 
+[node name="Enemy_spawner" parent="." instance=ExtResource( 15 )]
+
 [node name="Enemy_container" type="Node2D" parent="."]
 script = ExtResource( 9 )
-
-[node name="Enemy_jet" parent="Enemy_container" instance=ExtResource( 8 )]
-position = Vector2( -100, 0 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )

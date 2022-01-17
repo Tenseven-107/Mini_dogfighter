@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Prefabs/Weapons/Enemy_projectile.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/FX_logic/Trail_renderer.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Enemy_sprites/Enemy_planes.tres" type="SpriteFrames" id=3]
-[ext_resource path="res://Sprites/FX/Thrust_flame.png" type="Texture" id=4]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=5]
 [ext_resource path="res://Prefabs/Weapons/Enemy_Gun-1.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Enemy_logic/Enemy_jet_logic.gd" type="Script" id=7]
@@ -13,27 +12,7 @@
 [sub_resource type="Curve" id=17]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 2.35227, 0.0, 0, 0 ]
 
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 4 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 4 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 4 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="SpriteFrames" id=20]
-animations = [ {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 4 ) ],
-"loop": true,
-"name": "Flame",
-"speed": 5.0
-} ]
-
-[sub_resource type="Shader" id=37]
+[sub_resource type="Shader" id=38]
 code = "shader_type canvas_item;
 
 uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
@@ -45,9 +24,9 @@ void fragment() {
 	COLOR = custom_color;
 }"
 
-[sub_resource type="ShaderMaterial" id=38]
+[sub_resource type="ShaderMaterial" id=37]
 resource_local_to_scene = true
-shader = SubResource( 37 )
+shader = SubResource( 38 )
 shader_param/hit_color = Color( 1, 1, 1, 1 )
 shader_param/hit_strength = 0.0
 
@@ -131,10 +110,14 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[node name="Enemy_jet" type="KinematicBody2D" groups=["Enemies"]]
+[node name="Enemy_Old_timer" type="KinematicBody2D" groups=["Enemies"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 7 )
+hp = 20
+max_hp = 20
+wind_speed = 4.0
+rotation_speed = 20.0
 
 [node name="Fly_timer" type="Timer" parent="."]
 wait_time = 0.6
@@ -147,19 +130,12 @@ width_curve = SubResource( 17 )
 default_color = Color( 1, 1, 1, 1 )
 script = ExtResource( 2 )
 target_path = NodePath("..")
-trail_length = 6
-
-[node name="Flame" type="AnimatedSprite" parent="."]
-position = Vector2( 7.43866e-05, 22 )
-rotation = -1.5708
-frames = SubResource( 20 )
-animation = "Flame"
-speed_scale = 2.0
+trail_length = 10
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-material = SubResource( 38 )
+material = SubResource( 37 )
 frames = ExtResource( 3 )
-animation = "Normal_jet"
+animation = "Old_timer"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 0, -7, 7, 0, 0, 7, -7, 0 )

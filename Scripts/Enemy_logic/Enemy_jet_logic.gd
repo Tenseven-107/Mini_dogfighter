@@ -4,7 +4,6 @@ extends KinematicBody2D
 export (PackedScene) var explosion: PackedScene = preload("res://Prefabs/FX/Explosion.tscn")
 
 onready var sprite = $Sprite
-onready var flame = $Flame
 onready var anims = $Anims
 
 onready var gun = $Gun

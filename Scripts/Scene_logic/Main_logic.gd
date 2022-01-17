@@ -9,6 +9,7 @@ onready var player_hud = $Player_hud
 
 onready var point_net = $Nav_points
 onready var enemy_container = $Enemy_container
+onready var enemy_spawner = $Enemy_spawner
 
 
 func _ready():
@@ -20,6 +21,8 @@ func _ready():
 
 func initialize_nodes():
 	enemy_container.initialize(point_net)
+	enemy_spawner.initialize(enemy_container)
+
 	player_hud.initialize(player)
 
 
