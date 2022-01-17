@@ -116,6 +116,10 @@ func _physics_process(delta):
 
 
 # Damage control
+func handle_heal(added_hp: int):
+	hp += added_hp
+	GlobalSignals.emit_signal("camera_shake", 150, 0.05, 150)
+
 func handle_hit(damage: int, projectile_team: int):
 	if i_frame.is_stopped() and projectile_team != self.team and not immortal:
 		hp -= damage

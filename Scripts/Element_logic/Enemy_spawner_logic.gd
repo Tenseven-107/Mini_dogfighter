@@ -9,12 +9,14 @@ onready var spawn_count = spawn_locs.get_child_count()
 onready var spawn_points: Array = spawn_locs.get_children()
 
 var container = null
+export (float) var minimum_wave: float = 0
 export (float) var wave: float = 0
 export (int) var max_wave: int = 4
 
 export (Array, PackedScene) var enemies
 
 
+# Spawning the enemies
 func _ready():
 	spawn_timer.wait_time = 5
 
@@ -30,7 +32,7 @@ func pick_spawn_point():
 	var random_point: int = rand_range(0, spawn_count)
 	var picked_point = spawn_points[random_point]
 
-	var random_enemy: int = clamp(int(round(wave)), 0, max_wave)
+	var random_enemy: int = clamp(int(round(wave)), int(round(minimum_wave)), max_wave)
 
 	var plane = enemies[rand_range(0, random_enemy)]
 	var plane_object = plane.instance()
@@ -39,8 +41,9 @@ func pick_spawn_point():
 
 func _on_Difficulty_timer_timeout():
 	if spawn_timer.wait_time > 1:
-		spawn_timer.wait_time -= 0.05
+		spawn_timer.wait_time -= 0.025
 		wave += 0.1
+		minimum_wave += 0.025
 
 
 # Initialization

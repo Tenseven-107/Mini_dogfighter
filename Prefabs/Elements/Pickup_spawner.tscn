@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Element_logic/Pickup_spawner_logic.gd" type="Script" id=1]
+[ext_resource path="res://Prefabs/Elements/HP_pickup.tscn" type="PackedScene" id=2]
+
+[node name="Pickup_spawner" type="Node2D"]
+script = ExtResource( 1 )
+pickup = ExtResource( 2 )
+
+[node name="Spawn_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="timeout" from="Spawn_timer" to="." method="_on_Spawn_timer_timeout"]
