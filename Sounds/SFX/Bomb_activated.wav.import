@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bomb_activated.wav-bda49ff581e11b7fa852a77a8b5ccfc3.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Bomb_activated.wav"
+dest_files=[ "res://.import/Bomb_activated.wav-bda49ff581e11b7fa852a77a8b5ccfc3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

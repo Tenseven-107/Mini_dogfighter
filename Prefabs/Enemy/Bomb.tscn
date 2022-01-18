@@ -1,0 +1,281 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://Scripts/Enemy_logic/Bomb_logic.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Enemy_sprites/Bomb.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/FX/Debris.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/FX/X_fx.png" type="Texture" id=4]
+[ext_resource path="res://Prefabs/Weapons/Fast_enemy_projectile.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Prefabs/FX/Explosion.tscn" type="PackedScene" id=6]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=7]
+[ext_resource path="res://Sounds/SFX/Bomb_hit.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/SFX/Bomb_fire.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/SFX/Bomb_activated.wav" type="AudioStream" id=10]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.0416
+
+[sub_resource type="Shader" id=37]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=38]
+resource_local_to_scene = true
+shader = SubResource( 37 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_strength = 0.0
+
+[sub_resource type="Animation" id=40]
+resource_name = "Fire"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/hit_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/hit_strength")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "Hit"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/hit_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5, 1.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Particles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Particles2D2:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:material:shader_param/hit_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("RandomAudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=39]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/hit_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:material:shader_param/hit_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Curve" id=14]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=15]
+curve = SubResource( 14 )
+
+[sub_resource type="ParticlesMaterial" id=16]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 104.65
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 50.2
+angle_random = 1.0
+scale = 1.1
+scale_random = 1.0
+scale_curve = SubResource( 15 )
+
+[sub_resource type="Curve" id=34]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0869565, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=35]
+curve = SubResource( 34 )
+
+[sub_resource type="ParticlesMaterial" id=36]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 500.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 310.6
+angle_random = 1.0
+scale = 0.5
+scale_random = 1.0
+scale_curve = SubResource( 35 )
+hue_variation = 0.1
+hue_variation_random = 1.0
+
+[node name="Bomb" type="KinematicBody2D" groups=["Enemies"]]
+z_index = -1
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 1 )
+bullet = ExtResource( 5 )
+explosion = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 38 )
+texture = ExtResource( 2 )
+
+[node name="Hitstop_tween" type="Tween" parent="."]
+
+[node name="Rotate_tween" type="Tween" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Fire = SubResource( 40 )
+anims/Hit = SubResource( 2 )
+anims/RESET = SubResource( 39 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+emitting = false
+amount = 15
+lifetime = 0.5
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 16 )
+texture = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Particles2D2" type="Particles2D" parent="."]
+emitting = false
+amount = 20
+explosiveness = 0.1
+local_coords = false
+process_material = SubResource( 36 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Firing_rotater" type="Node2D" parent="."]
+
+[node name="Move_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Life_timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Fire_timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 1.19209e-07, 7.15256e-07 )
+scale = Vector2( 1.4, 1.4 )
+
+[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 7 )
+samples = [ ExtResource( 8 ) ]
+random_strategy = 1
+random_pitch_range = 1.0
+
+[node name="RandomAudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 7 )
+samples = [ ExtResource( 9 ) ]
+random_strategy = 1
+random_pitch_range = 0.7
+
+[node name="RandomAudioStreamPlayer2D3" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource( 7 )
+samples = [ ExtResource( 10 ) ]
+random_pitch_range = 0.7
+
+[connection signal="timeout" from="Life_timer" to="." method="_on_Life_timer_timeout"]
+[connection signal="timeout" from="Fire_timer" to="." method="_on_Fire_timer_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

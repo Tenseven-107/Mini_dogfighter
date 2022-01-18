@@ -4,6 +4,7 @@ onready var spawn_locs = $Spawn_locations
 
 onready var spawn_timer = $Spawn_timer
 onready var difficulty_timer = $Difficulty_timer
+onready var bomb_timer = $Bomb_timer
 
 onready var spawn_count = spawn_locs.get_child_count()
 onready var spawn_points: Array = spawn_locs.get_children()
@@ -14,12 +15,13 @@ export (float) var wave: float = 0
 export (int) var max_wave: int = 4
 
 export (Array, PackedScene) var enemies
+export (PackedScene) var bomb: PackedScene
 
 
 # Spawning the enemies
 func _ready():
 	spawn_timer.wait_time = 5
-
+	bomb_timer.start()
 	difficulty_timer.start() # Placeholder start
 
 func _process(delta):
@@ -49,6 +51,19 @@ func _on_Difficulty_timer_timeout():
 # Initialization
 func initialize(container_object):
 	self.container = container_object
+
+
+# Spawning bombs
+func _on_Bomb_timer_timeout():
+	var bomb_inst = bomb.instance()
+	bomb_inst.position.x = rand_range(-370, 370)
+	bomb_inst.position.y = 225
+
+	container.add_child(bomb_inst)
+
+	bomb_timer.wait_time = rand_range(1, 7)
+	bomb_timer.start()
+
 
 
 
