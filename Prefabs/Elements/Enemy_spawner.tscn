@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Element_logic/Enemy_spawner_logic.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/Enemy/Enemy_jet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Prefabs/Enemy/Enemy_Old_timer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/Enemy/Bomb.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Prefabs/Enemy/Enemy_dinghy.tscn" type="PackedScene" id=5]
 
 [node name="Enemy_spawner" type="Node2D"]
 script = ExtResource( 1 )
-enemies = [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ) ]
+enemies = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ) ]
 bomb = ExtResource( 4 )
 
 [node name="Difficulty_timer" type="Timer" parent="."]

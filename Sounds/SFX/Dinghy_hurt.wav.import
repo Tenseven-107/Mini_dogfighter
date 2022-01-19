@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Dinghy_hurt.wav-5f4e9f6f40ef42f38fd8c3b5c2c19f8d.sample"
+
+[deps]
+
+source_file="res://Sounds/SFX/Dinghy_hurt.wav"
+dest_files=[ "res://.import/Dinghy_hurt.wav-5f4e9f6f40ef42f38fd8c3b5c2c19f8d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

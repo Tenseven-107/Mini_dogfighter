@@ -15,7 +15,7 @@ func _process(delta):
 	if is_instance_valid(player):
 		hp_value = player.hp
 		if hp.value != hp_value:
-			tween.interpolate_property(hp, "value", hp.value, hp_value, 0.05, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+			tween.interpolate_property(hp, "value", hp.value, hp_value, 0.01, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
 			tween.start()
 
 		fuel.value = player.fuel

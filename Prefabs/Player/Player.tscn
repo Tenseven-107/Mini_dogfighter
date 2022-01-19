@@ -300,7 +300,7 @@ frames = SubResource( 14 )
 animation = "default_1"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PoolVector2Array( -1.74846e-07, -4, 4, -1.74846e-07, 1.74846e-07, 4, -4, 1.74846e-07 )
+polygon = PoolVector2Array( 0, -3, 3, 0, 0, 3, -3, 0 )
 
 [node name="Reticle" type="Sprite" parent="."]
 material = SubResource( 16 )

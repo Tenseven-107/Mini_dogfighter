@@ -144,7 +144,7 @@ polygon = PoolVector2Array( 0, -7, 7, 0, 0, 7, -7, 0 )
 position = Vector2( 0, -14 )
 rotation = -1.5708
 bullet = ExtResource( 1 )
-fire_rate = 0.6
+fire_rate = 0.8
 
 [node name="Hit_particles" type="Particles2D" parent="."]
 emitting = false
