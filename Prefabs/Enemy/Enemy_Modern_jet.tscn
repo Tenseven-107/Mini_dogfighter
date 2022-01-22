@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Prefabs/Enemy/Enemy_jet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Weapons/Enemy_bullet_projectile.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Shader" id=37]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=38]
+resource_local_to_scene = true
+shader = SubResource( 37 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_strength = 0.0
+
+[node name="Enemy_jet" instance=ExtResource( 1 )]
+hp = 40
+max_hp = 40
+rotation_speed = 20.0
+
+[node name="Fly_timer" parent="." index="0"]
+wait_time = 0.1
+
+[node name="Sprite" parent="." index="3"]
+material = SubResource( 38 )
+animation = "Modern_jet"
+
+[node name="Gun" parent="." index="5"]
+bullet = ExtResource( 2 )
+fire_rate = 0.6

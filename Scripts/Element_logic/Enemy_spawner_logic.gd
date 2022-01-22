@@ -12,7 +12,7 @@ onready var spawn_points: Array = spawn_locs.get_children()
 var container = null
 export (float) var minimum_wave: float = 0
 export (float) var wave: float = 0
-export (int) var max_wave: int = 4
+export (int) var max_wave: int = 9
 
 export (Array, PackedScene) var enemies
 export (PackedScene) var bomb: PackedScene
