@@ -15,6 +15,7 @@ onready var enemy_spawner = $Enemy_spawner
 func _ready():
 	randomize()
 	$Music_placeholder.play() # Placeholder
+	GlobalSignals.emit_signal("game_start") # place holder start
 
 	initialize_nodes()
 

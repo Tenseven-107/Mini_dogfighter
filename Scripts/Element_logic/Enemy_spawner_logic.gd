@@ -18,12 +18,22 @@ export (Array, PackedScene) var enemies
 export (PackedScene) var bomb: PackedScene
 
 
-# Spawning the enemies
-func _ready():
-	spawn_timer.wait_time = 5
-	bomb_timer.start()
-	difficulty_timer.start() # Placeholder start
 
+func _ready():
+	GlobalSignals.connect("game_start", self, "start_game")
+
+
+# Starting the game
+func start_game():
+	minimum_wave = 0
+	wave = 0
+
+	spawn_timer.wait_time = 5
+	difficulty_timer.start()
+	bomb_timer.start()
+
+
+# Spawning the enemies
 func _process(delta):
 	if spawn_timer.is_stopped():
 		spawn_timer.start()
