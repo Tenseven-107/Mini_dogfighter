@@ -100,9 +100,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _on_Life_timer_timeout():
-	var explosion_inst = explosion.instance()
-	explosion_inst.global_position = self.global_position
-	main.call_deferred("add_child", explosion_inst)
+	if is_instance_valid(main):
+		var explosion_inst = explosion.instance()
+		explosion_inst.global_position = self.global_position
+		main.call_deferred("add_child", explosion_inst)
 
 	queue_free()
 
@@ -116,18 +117,19 @@ func attack():
 	fire_timer.start()
 
 func _on_Fire_timer_timeout():
-	for s in rotater.get_children():
-		var bullet_inst = bullet.instance()
+	if is_instance_valid(main):
+		for s in rotater.get_children():
+			var bullet_inst = bullet.instance()
 
-		bullet_inst.position = s.global_position
-		bullet_inst.rotation = s.global_rotation
-		bullet_inst.team = self.team
+			bullet_inst.position = s.global_position
+			bullet_inst.rotation = s.global_rotation
+			bullet_inst.team = self.team
 
-		main.add_child(bullet_inst)
+			main.add_child(bullet_inst)
 
-		fire_timer.start()
-		anims.play("Fire")
-		sound_2.play()
+			fire_timer.start()
+			anims.play("Fire")
+			sound_2.play()
 
 
 

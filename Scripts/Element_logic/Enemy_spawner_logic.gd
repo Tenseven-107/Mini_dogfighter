@@ -14,17 +14,22 @@ export (float) var minimum_wave: float = 0
 export (float) var wave: float = 0
 export (int) var max_wave: int = 9
 
+export (bool) var game_active: bool = false
+
 export (Array, PackedScene) var enemies
 export (PackedScene) var bomb: PackedScene
 
 
 
 func _ready():
+	game_active = false
 	GlobalSignals.connect("game_start", self, "start_game")
 
 
 # Starting the game
 func start_game():
+	game_active = true
+
 	minimum_wave = 0
 	wave = 0
 
@@ -35,7 +40,7 @@ func start_game():
 
 # Spawning the enemies
 func _process(delta):
-	if spawn_timer.is_stopped():
+	if spawn_timer.is_stopped() and game_active:
 		spawn_timer.start()
 
 		pick_spawn_point()

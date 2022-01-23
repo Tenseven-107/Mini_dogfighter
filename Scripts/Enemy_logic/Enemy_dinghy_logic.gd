@@ -72,9 +72,10 @@ func handle_hit(damage: int, projectile_team: int):
 			die()
 
 func die():
-	var explosion_inst = explosion.instance()
-	explosion_inst.global_position = self.global_position
-	main.call_deferred("add_child", explosion_inst)
+	if is_instance_valid(main):
+		var explosion_inst = explosion.instance()
+		explosion_inst.global_position = self.global_position
+		main.call_deferred("add_child", explosion_inst)
 
 	queue_free()
 
