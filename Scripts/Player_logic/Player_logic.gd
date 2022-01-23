@@ -15,6 +15,7 @@ onready var gun2 = $Gun2
 onready var sound_1 = $AudioStreamPlayer2D
 onready var anim = $Anim_player
 onready var hitstop = $Hitstop
+onready var low_hp = $Low_hp_particles
 
 onready var main = get_parent()
 
@@ -113,6 +114,12 @@ func _physics_process(delta):
 			fuel_max = false
 		elif fuel >= max_fuel:
 			fuel_max = true
+
+		# Low hp indicator
+		if hp <= 40:
+			low_hp.emitting = true
+		else:
+			low_hp.emitting = false
 
 
 # Damage control

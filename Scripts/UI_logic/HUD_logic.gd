@@ -11,6 +11,10 @@ onready var tween = $HUD/Health_tween
 var hp_value
 
 
+func _ready():
+	GlobalSignals.connect("game_over", self, "dissapear")
+
+
 func _process(delta):
 	if is_instance_valid(player):
 		hp_value = player.hp
@@ -26,3 +30,9 @@ func _process(delta):
 
 func initialize(player_object):
 	self.player = player_object
+
+
+func dissapear():
+	queue_free()
+
+

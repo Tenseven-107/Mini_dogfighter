@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://Prefabs/Weapons/Gun.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/Player_sprites/Mini_jet.png" type="Texture" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=12]
 [ext_resource path="res://Sprites/FX/Hit_spark.png" type="Texture" id=13]
 [ext_resource path="res://Sounds/SFX/Player_hit-2.wav" type="AudioStream" id=14]
+[ext_resource path="res://Sprites/FX/Smoke_puff.png" type="Texture" id=15]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 2.35227, 0.0, 0, 0 ]
@@ -51,6 +52,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=22]
+resource_local_to_scene = true
 shader = SubResource( 21 )
 shader_param/hit_color = Color( 1, 1, 1, 1 )
 shader_param/hit_strength = 0.0
@@ -147,6 +149,34 @@ angle_random = 1.0
 scale = 0.5
 scale_random = 1.0
 scale_curve = SubResource( 28 )
+
+[sub_resource type="Gradient" id=29]
+offsets = PoolRealArray( 0, 0.583851, 0.981366 )
+colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 1, 0.355469, 0.355469, 0.355469, 1 )
+
+[sub_resource type="GradientTexture" id=30]
+gradient = SubResource( 29 )
+
+[sub_resource type="Curve" id=31]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.266304, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=32]
+curve = SubResource( 31 )
+
+[sub_resource type="ParticlesMaterial" id=33]
+flag_disable_z = true
+direction = Vector3( 1, 1, 1 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 9.8
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 720.0
+angle_random = 1.0
+scale = 1.5
+scale_random = 1.0
+scale_curve = SubResource( 32 )
+color_ramp = SubResource( 30 )
 
 [sub_resource type="Animation" id=26]
 resource_name = "Hit"
@@ -330,6 +360,14 @@ explosiveness = 1.0
 local_coords = false
 process_material = SubResource( 25 )
 texture = ExtResource( 13 )
+
+[node name="Low_hp_particles" type="Particles2D" parent="."]
+z_index = -1
+emitting = false
+amount = 20
+local_coords = false
+process_material = SubResource( 33 )
+texture = ExtResource( 15 )
 
 [node name="Hitstop" type="Tween" parent="."]
 

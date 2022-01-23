@@ -27,6 +27,9 @@ func _ready():
 
 # Starting the game
 func start_game():
+	Engine.time_scale = 1
+
+	# Adding game elements
 	var player_inst = player_object.instance()
 	player_inst.global_position = Vector2(0, 150)
 	player = player_inst
@@ -41,9 +44,17 @@ func start_game():
 
 	initialize_nodes()
 
+	# Deleting projectiles
+	var projectiles = get_tree().get_nodes_in_group("Projectiles")
+	if projectiles:
+		for projectile in projectiles:
+			projectile.activate_tween()
+
 
 # Game over
 func stop_game():
+	Engine.time_scale = 1
+
 	var game_over_inst = game_over_object.instance()
 	add_child(game_over_inst)
 
