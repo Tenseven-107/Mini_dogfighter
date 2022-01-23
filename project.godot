@@ -32,6 +32,7 @@ window/size/width=704
 window/size/height=448
 window/size/test_width=1408
 window/size/test_height=896
+mouse_cursor/custom_image="res://Sprites/UI/Mouse_cursor.png"
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

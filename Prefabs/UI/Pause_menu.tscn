@@ -46,6 +46,7 @@ margin_top = -10.5
 margin_right = 46.5
 margin_bottom = 10.5
 theme = ExtResource( 1 )
+shortcut_in_tooltip = false
 shortcut = SubResource( 2 )
 text = "PAUSE"
 __meta__ = {

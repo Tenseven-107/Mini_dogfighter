@@ -116,7 +116,7 @@ func _physics_process(delta):
 			fuel_max = true
 
 		# Low hp indicator
-		if hp <= 40:
+		if hp <= 30:
 			low_hp.emitting = true
 		else:
 			low_hp.emitting = false
