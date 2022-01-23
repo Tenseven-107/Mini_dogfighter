@@ -1,0 +1,187 @@
+[gd_scene load_steps=29 format=2]
+
+[ext_resource path="res://Sprites/UI/Options_button_hover.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/UI/Home_button.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/UI/Options_button_pressed.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/UI/Home_button_pressed.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/UI/Retry_button.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/UI/Retry_button_pressed.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/UI/Home_button_hover.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/UI/Retry_button_hover.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/UI/Options_button.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Fonts/MAGNETOB.TTF" type="DynamicFontData" id=10]
+[ext_resource path="res://Sprites/UI/UI_themes/Default_theme.tres" type="Theme" id=11]
+[ext_resource path="res://Scripts/UI_logic/Game_over_menu_logic.gd" type="Script" id=12]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxTexture" id=9]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxEmpty" id=15]
+
+[sub_resource type="StyleBoxEmpty" id=16]
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxEmpty" id=14]
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 9 )
+region_rect = Rect2( 0, 0, 50, 50 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_size = 1
+font_data = ExtResource( 10 )
+
+[node name="Game_over_menu" type="CanvasLayer"]
+script = ExtResource( 12 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Home" type="Button" parent="Control"]
+anchor_left = 0.392045
+anchor_top = 0.870536
+anchor_right = 0.463068
+anchor_bottom = 0.982143
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Retry" type="Button" parent="Control"]
+anchor_left = 0.464489
+anchor_top = 0.870536
+anchor_right = 0.535511
+anchor_bottom = 0.982143
+custom_styles/hover = SubResource( 8 )
+custom_styles/pressed = SubResource( 9 )
+custom_styles/focus = SubResource( 15 )
+custom_styles/disabled = SubResource( 16 )
+custom_styles/normal = SubResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Options" type="Button" parent="Control"]
+anchor_left = 0.536932
+anchor_top = 0.870536
+anchor_right = 0.607955
+anchor_bottom = 0.982143
+custom_styles/hover = SubResource( 5 )
+custom_styles/pressed = SubResource( 6 )
+custom_styles/focus = SubResource( 13 )
+custom_styles/disabled = SubResource( 14 )
+custom_styles/normal = SubResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text_container" type="VBoxContainer" parent="Control"]
+anchor_left = 0.386364
+anchor_top = 0.698661
+anchor_right = 0.613636
+anchor_bottom = 0.857143
+margin_bottom = 9.15527e-05
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Score_label" type="Label" parent="Control/Text_container"]
+margin_right = 159.0
+margin_bottom = 15.0
+theme = ExtResource( 11 )
+text = "Score:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="High_score_label" type="Label" parent="Control/Text_container"]
+margin_top = 19.0
+margin_right = 159.0
+margin_bottom = 40.0
+theme = ExtResource( 11 )
+custom_colors/font_color = Color( 0.901961, 0.282353, 0.180392, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "High score:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Control" type="Control" parent="Control/Text_container"]
+margin_top = 44.0
+margin_right = 159.0
+margin_bottom = 44.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Control2" type="Control" parent="Control/Text_container"]
+margin_top = 48.0
+margin_right = 159.0
+margin_bottom = 48.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Control3" type="Control" parent="Control/Text_container"]
+margin_top = 52.0
+margin_right = 159.0
+margin_bottom = 52.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Label2" type="Label" parent="Control/Text_container"]
+margin_top = 56.0
+margin_right = 159.0
+margin_bottom = 71.0
+theme = ExtResource( 11 )
+text = "GAME OVER!"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="pressed" from="Control/Retry" to="." method="_on_Retry_pressed"]

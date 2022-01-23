@@ -28,3 +28,19 @@ func _on_Start_pressed():
 
 func _on_Disappear_tween_all_completed():
 	queue_free()
+
+
+# Quit
+func _on_Quit_pressed():
+	get_tree().quit()
+
+
+
+
+
+
+
+
+
+
+

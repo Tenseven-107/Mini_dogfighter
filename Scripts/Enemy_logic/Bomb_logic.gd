@@ -100,6 +100,9 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 func _on_Life_timer_timeout():
+	die()
+
+func die():
 	if is_instance_valid(main):
 		var explosion_inst = explosion.instance()
 		explosion_inst.global_position = self.global_position

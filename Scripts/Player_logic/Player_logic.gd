@@ -138,6 +138,7 @@ func die():
 	explosion_inst.global_position = self.global_position
 	main.call_deferred("add_child", explosion_inst)
 
+	GlobalSignals.emit_signal("game_over")
 	queue_free()
 
 

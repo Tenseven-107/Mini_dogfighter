@@ -20,6 +20,9 @@ func _physics_process(delta):
 
 
 func _on_Life_time_timeout():
+	activate_tween()
+
+func activate_tween():
 	tween.interpolate_property(self, "scale", Vector2(scale.x, scale.y), Vector2(0, 0), 0.5, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
 	tween.start()
 

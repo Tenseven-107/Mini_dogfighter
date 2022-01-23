@@ -36,38 +36,6 @@ region = Rect2( 252, 0, 42, 42 )
 atlas = ExtResource( 1 )
 region = Rect2( 294, 0, 42, 42 )
 
-[sub_resource type="AtlasTexture" id=40]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=41]
-atlas = ExtResource( 3 )
-region = Rect2( 42, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=42]
-atlas = ExtResource( 3 )
-region = Rect2( 84, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 3 )
-region = Rect2( 126, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 3 )
-region = Rect2( 168, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=45]
-atlas = ExtResource( 3 )
-region = Rect2( 210, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=46]
-atlas = ExtResource( 3 )
-region = Rect2( 252, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=47]
-atlas = ExtResource( 3 )
-region = Rect2( 294, 0, 42, 42 )
-
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 42, 42 )
@@ -100,6 +68,38 @@ region = Rect2( 252, 0, 42, 42 )
 atlas = ExtResource( 2 )
 region = Rect2( 294, 0, 42, 42 )
 
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 3 )
+region = Rect2( 42, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 3 )
+region = Rect2( 84, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 3 )
+region = Rect2( 126, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 3 )
+region = Rect2( 168, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 3 )
+region = Rect2( 210, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 3 )
+region = Rect2( 252, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 3 )
+region = Rect2( 294, 0, 42, 42 )
+
 [resource]
 animations = [ {
 "frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
@@ -107,13 +107,13 @@ animations = [ {
 "name": "Normal_jet",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
-"loop": true,
-"name": "Modern_jet",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
 "loop": true,
 "name": "Old_timer",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ) ],
+"loop": true,
+"name": "Modern_jet",
 "speed": 5.0
 } ]

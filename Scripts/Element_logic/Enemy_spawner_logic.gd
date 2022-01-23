@@ -24,6 +24,7 @@ export (PackedScene) var bomb: PackedScene
 func _ready():
 	game_active = false
 	GlobalSignals.connect("game_start", self, "start_game")
+	GlobalSignals.connect("game_over", self, "stop_game")
 
 
 # Starting the game
@@ -36,6 +37,13 @@ func start_game():
 	spawn_timer.wait_time = 5
 	difficulty_timer.start()
 	bomb_timer.start()
+
+
+# Stopping the game
+func stop_game():
+	game_active = false
+	difficulty_timer.stop()
+	bomb_timer.stop()
 
 
 # Spawning the enemies

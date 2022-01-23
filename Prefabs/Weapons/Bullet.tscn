@@ -34,7 +34,7 @@ shader = SubResource( 15 )
 shader_param/line_color = Color( 1, 0.494118, 0, 0.262745 )
 shader_param/line_thickness = 1.0
 
-[node name="Bullet" type="Area2D"]
+[node name="Bullet" type="Area2D" groups=["Projectiles"]]
 z_index = -1
 collision_layer = 3
 collision_mask = 3

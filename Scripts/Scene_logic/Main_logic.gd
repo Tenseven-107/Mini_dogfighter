@@ -5,6 +5,7 @@ onready var pause_menu = preload("res://Prefabs/UI/Pause_menu.tscn")
 
 export (PackedScene) var player_object: PackedScene = preload("res://Prefabs/Player/Player.tscn")
 export (PackedScene) var hud_object: PackedScene = preload("res://Prefabs/UI/HUD.tscn")
+export (PackedScene) var game_over_object: PackedScene = preload("res://Prefabs/UI/Game_over_menu.tscn")
 
 onready var camera = $Camera2D
 onready var player = null
@@ -21,6 +22,7 @@ func _ready():
 	$Music_placeholder.play() # Placeholder
 
 	GlobalSignals.connect("game_start", self, "start_game")
+	GlobalSignals.connect("game_over", self, "stop_game")
 
 
 # Starting the game
@@ -33,9 +35,17 @@ func start_game():
 	player_hud = hud_inst
 
 	player_container.add_child(player_inst)
+	player_inst.i_frame.start()
+
 	add_child(hud_inst)
 
 	initialize_nodes()
+
+
+# Game over
+func stop_game():
+	var game_over_inst = game_over_object.instance()
+	add_child(game_over_inst)
 
 
 # Initializing the scene
