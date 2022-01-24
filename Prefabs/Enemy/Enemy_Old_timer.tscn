@@ -159,6 +159,7 @@ anims/Hit = SubResource( 32 )
 anims/RESET = SubResource( 33 )
 
 [node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX-2"
 script = ExtResource( 5 )
 samples = [ ExtResource( 8 ) ]
 random_pitch_range = 1.0

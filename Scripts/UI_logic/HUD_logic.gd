@@ -24,8 +24,9 @@ func _process(delta):
 	if is_instance_valid(player):
 		hp_value = player.hp
 		if hp.value != hp_value:
-			tween.interpolate_property(hp, "value", hp.value, hp_value, 0.01, Tween.TRANS_BOUNCE, Tween.EASE_IN_OUT)
+			tween.interpolate_property(hp, "modulate:r", 100, 1, 0.01, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
 			tween.start()
+			hp.value = hp_value
 
 			if player.hp <= 30:
 				vignette_mat.set_shader_param("vignette_opacity", 0.7)
