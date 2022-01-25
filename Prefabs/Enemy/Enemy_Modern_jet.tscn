@@ -25,6 +25,7 @@ shader_param/hit_strength = 0.0
 hp = 40
 max_hp = 40
 rotation_speed = 20.0
+score = 15
 
 [node name="Fly_timer" parent="." index="0"]
 wait_time = 0.1

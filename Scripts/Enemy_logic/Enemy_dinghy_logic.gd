@@ -19,6 +19,8 @@ export (float) var speed: float = 2
 export (float) var acceleration: float = 0.1
 var velocity: Vector2 = Vector2(0, 0)
 
+export (int) var score: int = 5
+
 var main = null
 var player = null
 
@@ -72,6 +74,7 @@ func handle_hit(damage: int, projectile_team: int):
 			die()
 
 func die():
+	GlobalSignals.emit_signal("update_score", score)
 	if is_instance_valid(main):
 		var explosion_inst = explosion.instance()
 		explosion_inst.global_position = self.global_position

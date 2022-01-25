@@ -18,8 +18,12 @@ onready var point_net = $Nav_points
 onready var enemy_container = $Enemy_container
 onready var enemy_spawner = $Enemy_spawner
 
+onready var scoreholder = $Scoreholder
+
 
 func _ready():
+	goto_main_menu()
+
 	randomize()
 	$Music_placeholder.play() # Placeholder
 
@@ -31,6 +35,7 @@ func _ready():
 # Instance main menu
 func goto_main_menu():
 	var main_menu_inst = main_menu_object.instance()
+	main_menu_inst.initialize(scoreholder)
 	add_child(main_menu_inst)
 
 
@@ -65,6 +70,7 @@ func stop_game():
 	Engine.time_scale = 1
 
 	var game_over_inst = game_over_object.instance()
+	game_over_inst.initialize(scoreholder)
 	add_child(game_over_inst)
 
 
@@ -73,7 +79,7 @@ func initialize_nodes():
 	enemy_container.initialize(point_net)
 	enemy_spawner.initialize(enemy_container)
 
-	player_hud.initialize(player)
+	player_hud.initialize(player, scoreholder)
 
 
 # Pausing

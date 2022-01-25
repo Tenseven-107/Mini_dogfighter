@@ -16,6 +16,10 @@ onready var options = $Main_Control/CenterContainer/VBoxContainer/Options
 onready var credits = $Main_Control/CenterContainer/VBoxContainer/Credits
 onready var quit = $Main_Control/CenterContainer/VBoxContainer/Quit
 
+onready var highscore = $Main_Control/CenterContainer/VBoxContainer/High_score_label
+
+var scoreholder = null
+
 var options_menu = null
 var credits_menu = null
 var customization_menu = null
@@ -26,12 +30,16 @@ var menu_open_3: bool = false
 
 
 func _ready():
+	if is_instance_valid(scoreholder):
+		highscore.text = "Highscore: " + str(scoreholder.high_score)
+
 	menu_open = false
 
 	appear.interpolate_property(main_control, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.7, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	appear.start()
 
 	start.grab_focus()
+	
 
 
 # Start
@@ -120,6 +128,9 @@ func _process(delta):
 		start.grab_focus()
 
 
+# Initiailization
+func initialize(score_object):
+	self.scoreholder = score_object
 
 
 

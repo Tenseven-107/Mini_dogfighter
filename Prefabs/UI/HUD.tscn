@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Sprites/UI/HP_icon_filling-p1.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/UI/Icon_divider.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Sprites/UI/Fuel_icon_filling.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/UI/UI_themes/Default_theme.tres" type="Theme" id=5]
 [ext_resource path="res://Scripts/UI_logic/HUD_logic.gd" type="Script" id=6]
+[ext_resource path="res://Sprites/Fonts/MAGNETOB.TTF" type="DynamicFontData" id=7]
 
 [sub_resource type="Shader" id=17]
 code = "shader_type canvas_item;
@@ -35,6 +36,11 @@ shader = SubResource( 17 )
 shader_param/vignette_intensity = 0.4
 shader_param/vignette_opacity = 0.0
 shader_param/vignette_rgb = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 20
+outline_size = 1
+font_data = ExtResource( 7 )
 
 [sub_resource type="Shader" id=15]
 code = "shader_type canvas_item;
@@ -87,10 +93,43 @@ anchor_left = -0.0227273
 anchor_top = -0.0357143
 anchor_right = 1.02273
 anchor_bottom = 1.03795
+margin_left = -1.14441e-05
+margin_top = 5.72205e-06
+margin_right = -6.10352e-05
 rect_pivot_offset = Vector2( 352, 224 )
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": true
+}
+
+[node name="Score_label" type="Label" parent="HUD"]
+anchor_left = 0.456676
+anchor_top = 0.0580357
+anchor_right = 0.543324
+anchor_bottom = 0.0915179
+rect_pivot_offset = Vector2( 30.5, 7.5 )
+theme = ExtResource( 5 )
+text = "Score:"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="High_score_label" type="Label" parent="HUD"]
+anchor_left = 0.387784
+anchor_top = 0.00446429
+anchor_right = 0.613636
+anchor_bottom = 0.0513393
+rect_pivot_offset = Vector2( 79, 10 )
+theme = ExtResource( 5 )
+custom_colors/font_color = Color( 0.901961, 0.282353, 0.180392, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "High score:"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": ""
 }
 
 [node name="HP_bar" type="TextureProgress" parent="HUD"]
@@ -147,3 +186,7 @@ __meta__ = {
 }
 
 [node name="Health_tween" type="Tween" parent="HUD"]
+
+[node name="Score_tween" type="Tween" parent="HUD"]
+
+[node name="High_score_tween" type="Tween" parent="HUD"]

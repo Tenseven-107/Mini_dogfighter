@@ -22,6 +22,8 @@ export (float) var wind_speed: float = 7.5
 export (float) var rotation_speed: float = 10
 export (bool) var alive: bool = true
 
+export (int) var score: int = 10
+
 var velocity = Vector2()
 var rotation_direction = 0
 var point
@@ -75,6 +77,7 @@ func handle_hit(damage: int, projectile_team: int):
 			die()
 
 func die():
+	GlobalSignals.emit_signal("update_score", score)
 	if is_instance_valid(main):
 		var explosion_inst = explosion.instance()
 		explosion_inst.global_position = self.global_position
