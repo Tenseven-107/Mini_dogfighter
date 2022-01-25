@@ -90,5 +90,7 @@ align = 1
 
 [connection signal="tween_all_completed" from="Disappear" to="." method="_on_Disappear_tween_all_completed"]
 [connection signal="pressed" from="Main_Control/CenterContainer/VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Main_Control/CenterContainer/VBoxContainer/Customization" to="." method="_on_Customization_pressed"]
 [connection signal="pressed" from="Main_Control/CenterContainer/VBoxContainer/Options" to="." method="_on_Options_pressed"]
+[connection signal="pressed" from="Main_Control/CenterContainer/VBoxContainer/Credits" to="." method="_on_Credits_pressed"]
 [connection signal="pressed" from="Main_Control/CenterContainer/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

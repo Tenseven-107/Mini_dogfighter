@@ -186,3 +186,4 @@ __meta__ = {
 
 [connection signal="pressed" from="Control/Home" to="." method="_on_Home_pressed"]
 [connection signal="pressed" from="Control/Retry" to="." method="_on_Retry_pressed"]
+[connection signal="pressed" from="Control/Options" to="." method="_on_Options_pressed"]

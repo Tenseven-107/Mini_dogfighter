@@ -5,6 +5,7 @@ onready var music = $VBoxContainer/Music
 onready var sfx = $VBoxContainer/SFX
 
 onready var fullscreen = $VBoxContainer/Fullscreen
+onready var back = $VBoxContainer/Back
 
 onready var appear = $Appear
 onready var disappear = $Disappear
@@ -16,6 +17,8 @@ func _ready():
 
 	appear.interpolate_property(self, "rect_scale", Vector2(0, 0), Vector2(1, 1), 0.7, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	appear.start()
+
+	back.grab_focus()
 
 	if OS.window_fullscreen:
 		fullscreen.pressed = true
