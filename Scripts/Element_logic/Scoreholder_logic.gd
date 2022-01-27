@@ -20,3 +20,20 @@ func add_score(added_score):
 	current_score += added_score
 	if current_score > high_score:
 		high_score = current_score
+
+
+# Saving the highscore
+func get_save_stats():
+	return {
+		"stats" : {
+			"high_score" : high_score
+		}
+	}
+
+func load_save_stats(stats):
+	high_score = stats.stats.high_score
+
+
+
+
+

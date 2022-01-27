@@ -18,6 +18,7 @@ config/dynamic_fonts/use_oversampling=true
 [autoload]
 
 GlobalSignals="*res://Scripts/Utility_logic/GlobalSignals.gd"
+SaveState="*res://Scripts/Utility_logic/SaveState.gd"
 
 [debug]
 

@@ -98,6 +98,7 @@ func _on_Credits_pressed():
 
 # Quit
 func _on_Quit_pressed():
+	SaveState.save_game()
 	get_tree().quit()
 
 
