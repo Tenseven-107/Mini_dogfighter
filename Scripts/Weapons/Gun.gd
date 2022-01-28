@@ -2,6 +2,8 @@ extends Node2D
 
 onready var firerate = $Timer
 onready var muzzle = $Position2D
+
+onready var anims = $AnimationPlayer
 onready var sound = $RandomAudioStreamPlayer2D
 
 export (PackedScene) var bullet: PackedScene
@@ -33,6 +35,7 @@ func attack():
 		main.add_child(bullet_inst)
 
 		sound.play()
+		anims.play("Fire")
 		if screenshake:
 			GlobalSignals.emit_signal("camera_shake", new_shake, shake_time, shake_limit)
 

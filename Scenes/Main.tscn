@@ -10,7 +10,7 @@
 [ext_resource path="res://Prefabs/Elements/Pickup_spawner.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scripts/Element_logic/Enemy_container_logic.gd" type="Script" id=9]
 [ext_resource path="res://Screen_effects/Default_effect.tres" type="Environment" id=10]
-[ext_resource path="res://Sounds/Music/Place_holder/Level 1 - The Devil&#039;s Ascent_edit.wav" type="AudioStream" id=11]
+[ext_resource path="res://Prefabs/Utility/Musicplayer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Prefabs/Utility/Scoreholder.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Prefabs/FX/Splash_zone.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Prefabs/Elements/Enemy_spawner.tscn" type="PackedScene" id=15]
@@ -218,6 +218,8 @@ script = ExtResource( 1 )
 
 [node name="Scoreholder" parent="." instance=ExtResource( 12 )]
 
+[node name="Musicplayer" parent="." instance=ExtResource( 11 )]
+
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -234,8 +236,3 @@ motion_mirroring = Vector2( 730, 0 )
 [node name="Sky-1" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
 material = SubResource( 16 )
 texture = ExtResource( 5 )
-
-[node name="Music_placeholder" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-volume_db = -10.0
-bus = "Music"

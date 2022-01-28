@@ -58,6 +58,7 @@ func _on_Disappear_tween_all_completed():
 func _on_Customization_pressed():
 	var customization_inst = customization_object.instance()
 	customization_menu = customization_inst
+	customization_menu.initialize(scoreholder)
 	add_child(customization_menu)
 
 	menu_open_3 = true

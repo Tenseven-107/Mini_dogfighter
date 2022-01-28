@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/Element_logic/Musicplayer_logic.gd" type="Script" id=2]
+[ext_resource path="res://Sounds/Music/Airometallica.wav" type="AudioStream" id=3]
+[ext_resource path="res://Sounds/SFX/Lose_jingle.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/SFX/Start_sound.wav" type="AudioStream" id=5]
+
+[node name="Musicplayer" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Music"
+
+[node name="Lose_jingle" type="AudioStreamPlayer" parent="."]
+volume_db = 20.0
+bus = "SFX-1"
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+samples = [ ExtResource( 4 ) ]
+random_strategy = 1
+random_pitch_range = 1.0
+
+[node name="Start_sound" type="AudioStreamPlayer" parent="."]
+volume_db = -5.0
+bus = "SFX-1"
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+samples = [ ExtResource( 5 ) ]
+random_strategy = 1
+random_pitch_range = 1.0
+
+[node name="Tween" type="Tween" parent="."]

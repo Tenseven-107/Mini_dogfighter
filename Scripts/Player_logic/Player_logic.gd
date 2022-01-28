@@ -48,6 +48,7 @@ func _ready():
 	gun2.team = team
 
 	sound_1.playing = true
+	anim.play("Spawn")
 
 
 func _physics_process(delta):

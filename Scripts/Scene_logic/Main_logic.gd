@@ -19,13 +19,12 @@ onready var enemy_container = $Enemy_container
 onready var enemy_spawner = $Enemy_spawner
 
 onready var scoreholder = $Scoreholder
+onready var musicplayer = $Musicplayer
 
 
 func _ready():
 	goto_main_menu()
-
 	randomize()
-	$Music_placeholder.play() # Placeholder
 
 	GlobalSignals.connect("game_start", self, "start_game")
 	GlobalSignals.connect("game_over", self, "stop_game")
@@ -42,6 +41,7 @@ func goto_main_menu():
 # Starting the game
 func start_game():
 	Engine.time_scale = 1
+	musicplayer.start()
 
 	# Adding game elements
 	var player_inst = player_object.instance()
@@ -68,6 +68,7 @@ func start_game():
 # Game over
 func stop_game():
 	Engine.time_scale = 1
+	musicplayer.stop()
 
 	var game_over_inst = game_over_object.instance()
 	game_over_inst.initialize(scoreholder)
@@ -80,6 +81,7 @@ func initialize_nodes():
 	enemy_spawner.initialize(enemy_container)
 
 	player_hud.initialize(player, scoreholder)
+	musicplayer.initialize(player)
 
 
 # Pausing
