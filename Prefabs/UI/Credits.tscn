@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/UI_logic/Credits_logic.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/UI/UI_themes/Default_theme.tres" type="Theme" id=2]
 [ext_resource path="res://Sprites/Fonts/MAGNETOB.TTF" type="DynamicFontData" id=3]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=4]
+[ext_resource path="res://Sounds/SFX/click_sound_press.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/SFX/click_sound_hover.wav" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -24,16 +27,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -53.0
-margin_right = 200.0
-margin_bottom = 53.0
+margin_left = -231.5
+margin_top = -61.5
+margin_right = 231.5
+margin_bottom = 61.5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 15.0
 theme = ExtResource( 2 )
 text = "Game by Tenseven"
@@ -41,15 +44,15 @@ align = 1
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 margin_top = 19.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 34.0
 theme = ExtResource( 2 )
-text = "Music by Hacky ( Airometallica )"
+text = "Music by Hacky ( Airometallica and Briefing )"
 align = 1
 
 [node name="Control4" type="Control" parent="VBoxContainer"]
 margin_top = 38.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 38.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
@@ -59,7 +62,7 @@ __meta__ = {
 
 [node name="Control5" type="Control" parent="VBoxContainer"]
 margin_top = 42.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 42.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
@@ -69,7 +72,7 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 margin_top = 46.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 61.0
 theme = ExtResource( 2 )
 text = "Come join my official gamedev server!"
@@ -77,12 +80,12 @@ align = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
 margin_top = 65.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 86.0
 
 [node name="LinkButton" type="LinkButton" parent="VBoxContainer/CenterContainer"]
-margin_left = 130.0
-margin_right = 269.0
+margin_left = 162.0
+margin_right = 301.0
 margin_bottom = 21.0
 theme = ExtResource( 2 )
 custom_colors/font_color_focus = Color( 0.901961, 0.282353, 0.180392, 1 )
@@ -93,7 +96,7 @@ underline = 1
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 margin_top = 90.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 90.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
@@ -103,7 +106,7 @@ __meta__ = {
 
 [node name="Control2" type="Control" parent="VBoxContainer"]
 margin_top = 94.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 94.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
@@ -113,7 +116,7 @@ __meta__ = {
 
 [node name="Control3" type="Control" parent="VBoxContainer"]
 margin_top = 98.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 98.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 20.0
@@ -123,7 +126,7 @@ __meta__ = {
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 margin_top = 102.0
-margin_right = 400.0
+margin_right = 463.0
 margin_bottom = 123.0
 theme = ExtResource( 2 )
 text = "Back"
@@ -131,6 +134,20 @@ text = "Back"
 [node name="Appear" type="Tween" parent="."]
 
 [node name="Disappear" type="Tween" parent="."]
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+bus = "SFX-UI"
+script = ExtResource( 4 )
+samples = [ ExtResource( 6 ) ]
+random_strategy = 1
+random_pitch_range = 0.5
+
+[node name="Press" type="AudioStreamPlayer" parent="."]
+bus = "SFX-UI"
+script = ExtResource( 4 )
+samples = [ ExtResource( 5 ) ]
+random_strategy = 1
+random_pitch_range = 0.5
 
 [connection signal="pressed" from="VBoxContainer/CenterContainer/LinkButton" to="." method="_on_LinkButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_Back_pressed"]

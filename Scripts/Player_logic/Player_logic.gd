@@ -47,6 +47,7 @@ func _ready():
 	gun.team = team
 	gun2.team = team
 
+	set_skin()
 	sound_1.playing = true
 	anim.play("Spawn")
 
@@ -171,5 +172,13 @@ func set_rot():
 		sprite.frame = 6
 	elif rotation <= -0.5 and rotation <= 0.0:
 		sprite.frame = 7
+
+func set_skin():
+	var skin = str(GlobalSignals.player_skin)
+	sprite.set_animation(skin)
+
+
+
+
 
 

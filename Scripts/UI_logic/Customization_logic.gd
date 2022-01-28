@@ -2,13 +2,24 @@ extends Control
 
 
 onready var back = $VBoxContainer/Back
+onready var skin_left = $VBoxContainer/CenterContainer2/HBoxContainer/Skin_left
+onready var skin_right = $VBoxContainer/CenterContainer2/HBoxContainer/Skin_right
+onready var theme_left = $VBoxContainer/CenterContainer/HBoxContainer/Theme_left
+onready var theme_right = $VBoxContainer/CenterContainer/HBoxContainer/Theme_right
 
 onready var appear = $Appear
 onready var disappear = $Disappear
+onready var skin_change = $Skin_change
+
+onready var sprite = $VBoxContainer/CenterContainer2/HBoxContainer/Plane_example
+
+onready var hover = $Hover
+onready var press = $Press
 
 var score = null
 
 export (int) var current_skin: int = 0
+var skin_value: int
 export (int, 0, 6) var max_skin: int = 0
 export (int, 0, 6) var max_unlocked_skins: int = 0
 
@@ -25,6 +36,20 @@ func _ready():
 	appear.start()
 
 	back.grab_focus()
+	play_button_sounds()
+
+func play_button_sounds():
+	back.connect("mouse_entered", hover, "play")
+	skin_left.connect("mouse_entered", hover, "play")
+	skin_right.connect("mouse_entered", hover, "play")
+	theme_left.connect("mouse_entered", hover, "play")
+	theme_right.connect("mouse_entered", hover, "play")
+
+	back.connect("pressed", press, "play")
+	skin_left.connect("pressed", press, "play")
+	skin_right.connect("pressed", press, "play")
+	theme_left.connect("pressed", press, "play")
+	theme_right.connect("pressed", press, "play")
 
 
 # Skins
@@ -40,6 +65,15 @@ func _on_Skin_left_pressed():
 		current_skin += 1
 		GlobalSignals.player_skin = current_skin
 		GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+
+func _process(delta):
+	if skin_value != current_skin:
+		skin_change.interpolate_property(sprite, "scale", Vector2(0, 0), Vector2(1, 1), 0.4, Tween.TRANS_ELASTIC, Tween.EASE_IN_OUT)
+		skin_change.start()
+		skin_value = current_skin
+
+	var skin = str(current_skin)
+	sprite.set_animation(skin)
 
 
 # Themes

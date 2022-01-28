@@ -18,6 +18,9 @@ onready var quit = $Main_Control/CenterContainer/VBoxContainer/Quit
 
 onready var highscore = $Main_Control/CenterContainer/VBoxContainer/High_score_label
 
+onready var hover = $Hover
+onready var press = $Press
+
 var scoreholder = null
 
 var options_menu = null
@@ -39,7 +42,18 @@ func _ready():
 	appear.start()
 
 	start.grab_focus()
-	
+	play_button_sounds()
+
+func play_button_sounds():
+	start.connect("mouse_entered", hover, "play")
+	customization.connect("mouse_entered", hover, "play")
+	options.connect("mouse_entered", hover, "play")
+	credits.connect("mouse_entered", hover, "play")
+	quit.connect("mouse_entered", hover, "play")
+
+	customization.connect("pressed", press, "play")
+	options.connect("pressed", press, "play")
+	credits.connect("pressed", press, "play")
 
 
 # Start

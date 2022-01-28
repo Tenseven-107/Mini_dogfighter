@@ -1,16 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Element_logic/Musicplayer_logic.gd" type="Script" id=2]
 [ext_resource path="res://Sounds/Music/Airometallica.wav" type="AudioStream" id=3]
 [ext_resource path="res://Sounds/SFX/Lose_jingle.wav" type="AudioStream" id=4]
 [ext_resource path="res://Sounds/SFX/Start_sound.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sounds/Music/Briefing_bit_crushed.wav" type="AudioStream" id=6]
 
 [node name="Musicplayer" type="Node"]
 script = ExtResource( 2 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Music"
+
+[node name="Menu_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 bus = "Music"
 
 [node name="Lose_jingle" type="AudioStreamPlayer" parent="."]

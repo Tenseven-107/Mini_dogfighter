@@ -6,6 +6,9 @@ onready var pause_button = $Pause/Button
 onready var timer = $Timer
 onready var sound = $AudioStreamPlayer
 
+onready var hover = $Hover
+onready var press = $Press
+
 var time_left: int = 4
 
 
@@ -15,6 +18,9 @@ func _ready():
 	time_label.hide()
 	pause_button.show()
 	sound.pitch_scale = 1
+
+	pause_button.connect("mouse_entered", hover, "play")
+	pause_button.connect("pressed", press, "play")
 
 
 # Unpausing

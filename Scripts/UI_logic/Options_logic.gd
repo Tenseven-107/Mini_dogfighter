@@ -10,6 +10,8 @@ onready var back = $VBoxContainer/Back
 onready var appear = $Appear
 onready var disappear = $Disappear
 
+onready var hover = $Hover
+onready var press = $Press
 
 func _ready():
 	music.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music"))
@@ -22,6 +24,15 @@ func _ready():
 
 	if OS.window_fullscreen:
 		fullscreen.pressed = true
+
+	play_button_sounds()
+
+func play_button_sounds():
+	back.connect("mouse_entered", hover, "play")
+	fullscreen.connect("mouse_entered", hover, "play")
+
+	back.connect("pressed", press, "play")
+	fullscreen.connect("pressed", press, "play")
 
 
 # Fullscreen

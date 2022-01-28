@@ -5,9 +5,14 @@ export (PackedScene) var options_object: PackedScene = preload("res://Prefabs/UI
 
 onready var control = $Control
 onready var retry = $Control/Retry
+onready var home = $Control/Home
+onready var options = $Control/Options
 
 onready var score = $Control/Text_container/Score_label
 onready var highscore = $Control/Text_container/High_score_label
+
+onready var hover = $Hover
+onready var press = $Press
 
 var scoreholder = null
 
@@ -23,6 +28,15 @@ func _ready():
 	control.show()
 	menu_open = false
 	retry.grab_focus()
+
+	play_button_sounds()
+
+func play_button_sounds():
+	retry.connect("mouse_entered", hover, "play")
+	home.connect("mouse_entered", hover, "play")
+	options.connect("mouse_entered", hover, "play")
+
+	options.connect("pressed", press, "play")
 
 
 func _on_Home_pressed():

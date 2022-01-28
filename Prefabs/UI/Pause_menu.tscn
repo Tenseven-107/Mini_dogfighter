@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Sprites/UI/UI_themes/Default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Scripts/UI_logic/Pause_menu_logic.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/Fonts/MAGNETOB.TTF" type="DynamicFontData" id=3]
 [ext_resource path="res://Sounds/SFX/Blip-1.wav" type="AudioStream" id=4]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player.gd" type="Script" id=5]
+[ext_resource path="res://Sounds/SFX/click_sound_press.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sounds/SFX/click_sound_hover.wav" type="AudioStream" id=7]
 
 [sub_resource type="InputEventAction" id=1]
 action = "Pause"
@@ -78,6 +81,20 @@ one_shot = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 bus = "SFX-UI"
+
+[node name="Hover" type="AudioStreamPlayer" parent="."]
+bus = "SFX-UI"
+script = ExtResource( 5 )
+samples = [ ExtResource( 7 ) ]
+random_strategy = 1
+random_pitch_range = 0.5
+
+[node name="Press" type="AudioStreamPlayer" parent="."]
+bus = "SFX-UI"
+script = ExtResource( 5 )
+samples = [ ExtResource( 6 ) ]
+random_strategy = 1
+random_pitch_range = 0.5
 
 [connection signal="pressed" from="Pause/Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
