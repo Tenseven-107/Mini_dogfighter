@@ -34,7 +34,7 @@ func _on_Back_pressed():
 	disappear.interpolate_property(self, "rect_scale", self.rect_scale, Vector2(0, 0), 0.2, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	disappear.start()
 
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 func _on_Disappear_tween_all_completed():

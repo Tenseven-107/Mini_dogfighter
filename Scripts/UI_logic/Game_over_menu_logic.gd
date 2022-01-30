@@ -40,13 +40,13 @@ func play_button_sounds():
 
 
 func _on_Home_pressed():
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 	GlobalSignals.emit_signal("main_menu")
 	queue_free()
 
 
 func _on_Retry_pressed():
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 	GlobalSignals.emit_signal("game_start")
 	queue_free()
 
@@ -59,7 +59,7 @@ func _on_Options_pressed():
 	menu_open = true
 	control.hide()
 
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
  # Menu handling

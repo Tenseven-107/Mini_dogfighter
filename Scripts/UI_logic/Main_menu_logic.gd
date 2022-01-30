@@ -61,7 +61,7 @@ func _on_Start_pressed():
 	disappear.interpolate_property(main_control, "rect_scale", main_control.rect_scale, Vector2(0, 0), 0.2, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	disappear.start()
 
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 	GlobalSignals.emit_signal("game_start")
 
 func _on_Disappear_tween_all_completed():
@@ -80,7 +80,7 @@ func _on_Customization_pressed():
 	transition.interpolate_property(main_control, "rect_scale", main_control.rect_scale, Vector2(0, 0), 0.2, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	transition.start()
 
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 # Options
@@ -94,7 +94,7 @@ func _on_Options_pressed():
 	transition.interpolate_property(main_control, "rect_scale", main_control.rect_scale, Vector2(0, 0), 0.2, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	transition.start()
 
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 # Credits
@@ -108,7 +108,7 @@ func _on_Credits_pressed():
 	transition.interpolate_property(main_control, "rect_scale", main_control.rect_scale, Vector2(0, 0), 0.2, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	transition.start()
 
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 # Quit

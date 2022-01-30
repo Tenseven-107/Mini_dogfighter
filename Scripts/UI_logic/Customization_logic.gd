@@ -57,14 +57,14 @@ func _on_Skin_right_pressed():
 	if !current_skin <= 0:
 		current_skin -= 1
 		GlobalSignals.player_skin = current_skin
-		GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+		GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 func _on_Skin_left_pressed():
 	if !current_skin >= max_skin:
 		current_skin += 1
 		GlobalSignals.player_skin = current_skin
-		GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+		GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 func _process(delta):
 	if skin_value != current_skin:
@@ -81,14 +81,14 @@ func _on_Theme_right_pressed():
 	if !current_theme <= 0:
 		current_theme -= 1
 		GlobalSignals.theme_skin = current_theme
-		GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+		GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 func _on_Theme_left_pressed():
 	if !current_theme >= max_theme:
 		current_theme += 1
 		GlobalSignals.theme_skin = current_theme
-		GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+		GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 # Back
@@ -96,7 +96,7 @@ func _on_Back_pressed():
 	disappear.interpolate_property(self, "rect_scale", self.rect_scale, Vector2(0, 0), 0.2, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	disappear.start()
 
-	GlobalSignals.emit_signal("camera_shake", 1500, 0.05, 1500)
+	GlobalSignals.emit_signal("camera_shake", 1000, 0.05, 1000)
 
 
 func _on_Disappear_tween_all_completed():
