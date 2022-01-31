@@ -32,7 +32,7 @@ func attack():
 		bullet_inst.rotation += rand_range(0.0, 0.1)
 		bullet_inst.team = self.team
 
-		main.add_child(bullet_inst)
+		main.call_deferred("add_child", bullet_inst)
 
 		sound.play()
 		anims.play("Fire")

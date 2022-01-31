@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sky-1.png-4ac02df203bddd2a4af1abfd8ff282a7.stex"
+path="res://.import/Mini_enemy_chopper.png-572e3bcf136e48a63d8c6f15c70d477b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Misc/Sky-1.png"
-dest_files=[ "res://.import/Sky-1.png-4ac02df203bddd2a4af1abfd8ff282a7.stex" ]
+source_file="res://Sprites/Enemy_sprites/Mini_enemy_chopper.png"
+dest_files=[ "res://.import/Mini_enemy_chopper.png-572e3bcf136e48a63d8c6f15c70d477b.stex" ]
 
 [params]
 

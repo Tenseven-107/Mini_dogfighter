@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Sky-1.png-4ac02df203bddd2a4af1abfd8ff282a7.stex"
+path="res://.import/Mini_Heavy_fighter.png-3399f80ace4b6519b646c754fb4aaf94.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Misc/Sky-1.png"
-dest_files=[ "res://.import/Sky-1.png-4ac02df203bddd2a4af1abfd8ff282a7.stex" ]
+source_file="res://Sprites/Player_sprites/Mini_Heavy_fighter.png"
+dest_files=[ "res://.import/Mini_Heavy_fighter.png-3399f80ace4b6519b646c754fb4aaf94.stex" ]
 
 [params]
 

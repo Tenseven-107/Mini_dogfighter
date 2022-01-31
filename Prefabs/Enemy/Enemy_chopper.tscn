@@ -1,0 +1,267 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://Prefabs/Weapons/Enemy_projectile.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/FX_logic/Trail_renderer.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Enemy_logic/Enemy_chopper_logic.gd" type="Script" id=4]
+[ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=5]
+[ext_resource path="res://Prefabs/Weapons/Enemy_Gun-1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Sprites/Enemy_sprites/Mini_enemy_chopper.png" type="Texture" id=7]
+[ext_resource path="res://Sounds/SFX/Hit_sound_edit.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sprites/FX/Debris.png" type="Texture" id=9]
+
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 2.35227, 0.0, 0, 0 ]
+
+[sub_resource type="Shader" id=37]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=38]
+resource_local_to_scene = true
+shader = SubResource( 37 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_strength = 0.0
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 7 )
+region = Rect2( 42, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 7 )
+region = Rect2( 84, 0, 42, 42 )
+
+[sub_resource type="SpriteFrames" id=42]
+animations = [ {
+"frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=46]
+radius = 150.0
+
+[sub_resource type="Curve" id=34]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.0869565, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=35]
+curve = SubResource( 34 )
+
+[sub_resource type="ParticlesMaterial" id=36]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 500.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 310.6
+angle_random = 1.0
+scale = 0.5
+scale_random = 1.0
+scale_curve = SubResource( 35 )
+hue_variation = 0.1
+hue_variation_random = 1.0
+
+[sub_resource type="Animation" id=32]
+resource_name = "Hit"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/hit_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 1.0, 0.0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("RandomAudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hit_particles:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=33]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/hit_strength")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=45]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:right")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=43]
+resource_name = "Turn_left"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.05 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0, 0.95 ), Vector2( -1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=44]
+resource_name = "Turn_right"
+length = 0.05
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.02, 0.05 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ), Vector2( -1, 0.95 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="Enemy_chopper" type="KinematicBody2D" groups=["Enemies"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 4 )
+
+[node name="Fly_timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Trail" type="Line2D" parent="."]
+z_index = -1
+width = 8.0
+width_curve = SubResource( 17 )
+default_color = Color( 1, 1, 1, 1 )
+script = ExtResource( 2 )
+target_path = NodePath("..")
+trail_length = 6
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+material = SubResource( 38 )
+frames = SubResource( 42 )
+speed_scale = 4.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, -5, 5, 0, 0, 5, -5, 0 )
+
+[node name="Gun" parent="." instance=ExtResource( 6 )]
+bullet = ExtResource( 1 )
+fire_rate = 0.2
+
+[node name="Detection_zone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_zone"]
+shape = SubResource( 46 )
+
+[node name="Hit_particles" type="Particles2D" parent="."]
+emitting = false
+amount = 20
+explosiveness = 0.1
+local_coords = false
+process_material = SubResource( 36 )
+texture = ExtResource( 9 )
+
+[node name="Anims" type="AnimationPlayer" parent="."]
+anims/Hit = SubResource( 32 )
+anims/RESET = SubResource( 33 )
+
+[node name="Movement_anims" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 45 )
+anims/Turn_left = SubResource( 43 )
+anims/Turn_right = SubResource( 44 )
+
+[node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = "SFX-2"
+script = ExtResource( 5 )
+samples = [ ExtResource( 8 ) ]
+random_pitch_range = 1.0
+
+[connection signal="body_entered" from="Detection_zone" to="." method="_on_Detection_zone_body_entered"]

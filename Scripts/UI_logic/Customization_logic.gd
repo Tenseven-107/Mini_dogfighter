@@ -20,8 +20,8 @@ var score = null
 
 export (int) var current_skin: int = 0
 var skin_value: int
-export (int, 0, 6) var max_skin: int = 0
-export (int, 0, 6) var max_unlocked_skins: int = 0
+export (int, 0, 5) var max_skin: int = 0
+export (int, 0, 5) var max_unlocked_skins: int = 0
 
 export (int) var current_theme: int = 0
 export (int) var max_theme: int = 6
@@ -115,14 +115,13 @@ func set_unlocks():
 			max_unlocked_skins = 2
 		if score.high_score >= 150:
 			max_unlocked_skins = 3
-		if score.high_score >= 200:
-			max_unlocked_skins = 4
-		if score.high_score >= 250:
-			max_unlocked_skins = 5
 		if score.high_score >= 300:
-			max_unlocked_skins = 6
+			max_unlocked_skins = 4
+		if score.high_score >= 400:
+			max_unlocked_skins = 5
 
-		clamp(max_unlocked_skins, 0, 6)
+		clamp(max_skin, 0, 5)
+		clamp(max_unlocked_skins, 0, 5)
 		max_skin = max_unlocked_skins
 
 
