@@ -24,6 +24,11 @@ func _process(delta):
 
 
 func shake(new_shake, shake_time, shake_limit):
+	var fps = Engine.get_frames_per_second()
+	if fps <= 60:
+		new_shake /= 2
+		shake_limit /= 2
+
 	shaking = true
 	amount += new_shake
 	if amount > shake_limit:

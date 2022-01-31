@@ -20,8 +20,10 @@ export (int, 0, 1) var team: int = 1
 
 export (float) var speed: float = 200
 export (float) var acceleration: float = 10
-export (bool) var alive: bool = true
+export (float) var max_speed: float = 200
+export (float) var min_speed: float = 175
 
+export (bool) var alive: bool = true
 export (int) var score: int = 5
 
 var velocity = Vector2()
@@ -29,6 +31,7 @@ export (bool) var right: bool = true
 
 func _ready():
 	gun.team = team
+	speed = rand_range(min_speed, max_speed)
 	fly_timer.start()
 
 

@@ -17,6 +17,9 @@ onready var anim = $Anim_player
 onready var hitstop = $Hitstop
 onready var low_hp = $Low_hp_particles
 
+onready var mini_button_tutorial = $Mini_button_indicators
+onready var exclamation_mark = $ExclamationMark
+
 onready var main = get_parent()
 
 export (int) var hp: int = 100
@@ -97,6 +100,8 @@ func _physics_process(delta):
 
 		velocity = move_and_slide(velocity, UP)
 
+		exclamation_mark.global_rotation = 0
+		mini_button_tutorial.global_rotation = 0
 
 		if global_position.y > 225 or global_position.y <= -225:
 			if i_frame.is_stopped():
