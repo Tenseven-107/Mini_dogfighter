@@ -1,20 +1,23 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=32 format=2]
 
-[ext_resource path="res://Scripts/Enemy_logic/Enemy_dinghy_logic.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Enemy_sprites/Enemy_dinghy.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Enemy_logic/Enemy_gun_boat_logic.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/FX/Debris-2.png" type="Texture" id=2]
 [ext_resource path="res://Prefabs/Weapons/Gun_laser.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Prefabs/Weapons/Enemy_projectile.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Prefabs/Weapons/Enemy_Gun-1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scripts/FX_logic/Trail_renderer.gd" type="Script" id=6]
 [ext_resource path="res://Sprites/FX/Smoke_puff.png" type="Texture" id=7]
-[ext_resource path="res://Sounds/SFX/Dinghy_hurt.wav" type="AudioStream" id=8]
+[ext_resource path="res://Sounds/SFX/Explosion_edit.wav" type="AudioStream" id=8]
 [ext_resource path="res://addons/randomAudioStreamPlayer/random_audio_stream_player_2D.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/FX/Debris.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Enemy_sprites/Enemy_gun_boat.png" type="Texture" id=11]
+[ext_resource path="res://Prefabs/Weapons/Hard_enemy_projectile.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 20, 12 )
+extents = Vector2( 64, 13.5 )
 
 [sub_resource type="Shader" id=14]
 code = "shader_type canvas_item;
@@ -34,23 +37,27 @@ shader = SubResource( 14 )
 shader_param/hit_color = Color( 1, 1, 1, 1 )
 shader_param/hit_strength = 0.0
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 2 )
-region = Rect2( 0, 0, 42, 42 )
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 128, 48 )
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 2 )
-region = Rect2( 42, 0, 42, 42 )
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 11 )
+region = Rect2( 128, 0, 128, 48 )
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 2 )
-region = Rect2( 84, 0, 42, 42 )
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 11 )
+region = Rect2( 256, 0, 128, 48 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 11 )
+region = Rect2( 384, 0, 128, 48 )
+
+[sub_resource type="SpriteFrames" id=27]
 animations = [ {
-"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
-"name": "Dinghy",
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -108,6 +115,42 @@ tracks/3/keys = {
 "method": "play"
 } ]
 }
+tracks/4/type = "value"
+tracks/4/path = NodePath("Particles2D3:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Particles2D5:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Particles2D4:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.05 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
 
 [sub_resource type="Animation" id=17]
 length = 0.001
@@ -124,32 +167,37 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Curve" id=11]
-_data = [ Vector2( 0, 0.527273 ), 0.0, 0.0, 0, 0, Vector2( 0.5, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.248447, 0.459627, 0.701863, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.791016, 0, 1, 1, 0.509766, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1 )
 
-[sub_resource type="CurveTexture" id=12]
-curve = SubResource( 11 )
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="Curve" id=7]
+_data = [ Vector2( 0, 0.511364 ), 0.0, 0.0, 0, 0, Vector2( 0.505435, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="ParticlesMaterial" id=9]
 flag_disable_z = true
-direction = Vector3( 0, -1, 0 )
+spread = 180.0
 gravity = Vector3( 0, -98, 0 )
-initial_velocity = 30.0
+initial_velocity = 117.65
 initial_velocity_random = 1.0
+angular_velocity = 28.24
+angular_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-angle = 70.6
-angle_random = 1.0
+linear_accel = 9.8
+linear_accel_random = 1.0
 scale = 2.0
 scale_random = 1.0
-scale_curve = SubResource( 12 )
-
-[sub_resource type="Gradient" id=18]
-offsets = PoolRealArray( 0, 0.906832, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0.763975, 1, 1, 1, 0 )
-
-[sub_resource type="GradientTexture" id=19]
-gradient = SubResource( 18 )
+scale_curve = SubResource( 8 )
+color_ramp = SubResource( 6 )
+hue_variation = 0.06
+hue_variation_random = 1.0
 
 [sub_resource type="Curve" id=20]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.483696, 0.511364 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -170,42 +218,58 @@ angle_random = 1.0
 scale = 0.5
 scale_random = 1.0
 scale_curve = SubResource( 21 )
-color = Color( 0.901961, 0.282353, 0.180392, 1 )
-color_ramp = SubResource( 19 )
 hue_variation = 0.05
 hue_variation_random = 1.0
 
-[node name="Enemy_dinghy" type="KinematicBody2D" groups=["Enemies"]]
+[node name="Enemy_gun_boat" type="KinematicBody2D" groups=["Enemies"]]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource( 1 )
 
 [node name="Trail" type="Line2D" parent="."]
+position = Vector2( 0, 2 )
 width_curve = SubResource( 2 )
 default_color = Color( 0.156863, 0.8, 0.87451, 1 )
 script = ExtResource( 6 )
 target_path = NodePath("..")
-trail_length = 30
+trail_length = 100
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -12 )
+position = Vector2( 0, -10.5 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = SubResource( 15 )
 position = Vector2( 0, -21 )
-frames = SubResource( 6 )
-animation = "Dinghy"
+frames = SubResource( 27 )
 
 [node name="Gun" parent="." instance=ExtResource( 5 )]
-position = Vector2( 0, -17 )
+position = Vector2( 5, -24 )
 rotation = -1.5708
 bullet = ExtResource( 4 )
 fire_rate = 0.1
 
-[node name="Gun_laser" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, -17 )
+[node name="Gun2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 11, -24 )
 rotation = -1.5708
+bullet = ExtResource( 4 )
+fire_rate = 0.1
+
+[node name="Cannon" parent="." instance=ExtResource( 5 )]
+position = Vector2( 50, -24 )
+rotation = -0.785398
+bullet = ExtResource( 12 )
+fire_rate = 0.07
+
+[node name="Gun_laser" parent="." instance=ExtResource( 3 )]
+position = Vector2( 8, -17 )
+rotation = -1.5708
+
+[node name="Detect_zone" type="Area2D" parent="."]
+position = Vector2( 50, -24 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Detect_zone"]
+polygon = PoolVector2Array( 0, 0, 22, -152, 158, -16 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Hit = SubResource( 16 )
@@ -219,23 +283,47 @@ one_shot = true
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( 0, -10 )
 emitting = false
-amount = 20
+amount = 30
 lifetime = 0.8
 explosiveness = 1.0
 local_coords = false
-process_material = SubResource( 13 )
+process_material = SubResource( 9 )
 texture = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="Particles2D2" type="Particles2D" parent="."]
-position = Vector2( 0, -10 )
+position = Vector2( -40, -24 )
 emitting = false
 explosiveness = 1.0
 local_coords = false
 process_material = SubResource( 22 )
-texture = ExtResource( 7 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D4" type="Particles2D" parent="."]
+position = Vector2( 32, -17 )
+emitting = false
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 22 )
+texture = ExtResource( 2 )
+
+[node name="Particles2D3" type="Particles2D" parent="."]
+position = Vector2( 40, -17 )
+emitting = false
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 22 )
+texture = ExtResource( 10 )
+
+[node name="Particles2D5" type="Particles2D" parent="."]
+position = Vector2( -48, -24 )
+emitting = false
+explosiveness = 1.0
+local_coords = false
+process_material = SubResource( 22 )
+texture = ExtResource( 10 )
 
 [node name="RandomAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = "SFX-2"
@@ -243,3 +331,5 @@ script = ExtResource( 9 )
 samples = [ ExtResource( 8 ) ]
 random_strategy = 1
 random_pitch_range = 0.7
+
+[connection signal="body_entered" from="Detect_zone" to="." method="_on_Detect_zone_body_entered"]

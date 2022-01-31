@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Element_logic/Enemy_spawner_logic.gd" type="Script" id=1]
 [ext_resource path="res://Prefabs/Enemy/Enemy_jet.tscn" type="PackedScene" id=2]
@@ -8,10 +8,11 @@
 [ext_resource path="res://Prefabs/Enemy/Enemy_Modern_jet.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Prefabs/Enemy/Enemy_bomber.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Prefabs/Enemy/Enemy_chopper.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Prefabs/Enemy/Enemy_gun_boat.tscn" type="PackedScene" id=9]
 
 [node name="Enemy_spawner" type="Node2D"]
 script = ExtResource( 1 )
-enemies = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 8 ) ]
+enemies = [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 8 ) ]
 bomb = ExtResource( 4 )
 
 [node name="Difficulty_timer" type="Timer" parent="."]

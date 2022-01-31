@@ -8,26 +8,31 @@ onready var sprite = $AnimatedSprite
 
 onready var laser = $Gun_laser
 onready var gun = $Gun
+onready var gun2 = $Gun2
+onready var cannon = $Cannon
 
 onready var enter_timer = $Enter_timer
 onready var enter_tween = $Enter_tween
 
-export (int) var hp: int = 30
-export (int) var max_hp: int = 30
+export (int) var hp: int = 100
+export (int) var max_hp: int = 100
 export (int, 0, 1) var team: int = 1
 
-export (float) var speed: float = 2
+export (float) var speed: float = 0.5
 export (float) var acceleration: float = 0.1
 var velocity: Vector2 = Vector2(0, 0)
 
-export (int) var score: int = 5
+export (int) var score: int = 20
 
 var main = null
 var player = null
 
 func _ready():
 	global_position.y = 192
+
 	gun.team = team
+	gun2.team = team
+	cannon.team = team
 
 	enter_tween.interpolate_property(sprite, "scale", Vector2(0, 0), Vector2(1, 1), 0.2, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	enter_tween.start()
@@ -42,9 +47,6 @@ func _ready():
 func _physics_process(delta):
 	# Level entering
 	if !enter_timer.is_stopped():
-		if position.x < 0:
-			velocity.x -= acceleration
-		elif position.x > 0:
 			velocity.x += acceleration
 
 	# Player following
@@ -66,6 +68,13 @@ func _process(delta):
 	if collider:
 		player = collider
 		gun.attack()
+		gun2.attack()
+
+
+# Cannon detection zone
+func _on_Detect_zone_body_entered(body: Node):
+	if body.is_in_group("Player"):
+		cannon.attack()
 
 
 # Damage handling
@@ -90,4 +99,10 @@ func die():
 # Initialization
 func initialize(main_object, null_value):
 	self.main = main_object
+
 	gun.initialize(main_object)
+	gun2.initialize(main_object)
+	cannon.initialize(main_object)
+
+
+
