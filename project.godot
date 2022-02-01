@@ -10,9 +10,11 @@ config_version=4
 
 [application]
 
-config/name="Mini_dogfighter"
+config/name="Airthrashers_game"
+config/description="A fast paced arcade one-stick bullet hell game! Enjoy :) // Property of Fizzeeskull"
 run/main_scene="res://Scenes/Splash_screen.tscn"
-config/icon="res://icon.png"
+config/icon="res://Sprites/UI/Airthrashers_icon-1.png"
+config/windows_native_icon="res://Sprites/UI/Airthrashers_icon-1.ico"
 config/dynamic_fonts/use_oversampling=true
 
 [autoload]
