@@ -70,6 +70,9 @@ func _on_Difficulty_timer_timeout():
 		wave += 0.1
 		minimum_wave += 0.025
 
+		clamp(minimum_wave, 0, max_wave)
+		clamp(wave, 0, max_wave)
+
 
 # Initialization
 func initialize(container_object):

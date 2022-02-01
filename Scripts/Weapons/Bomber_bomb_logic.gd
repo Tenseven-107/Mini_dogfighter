@@ -27,6 +27,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 
-func initialize(main_object):
+func initialize(main_object, null_value):
 	self.main = main_object
 

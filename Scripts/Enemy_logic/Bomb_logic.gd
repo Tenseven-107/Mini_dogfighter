@@ -128,7 +128,7 @@ func _on_Fire_timer_timeout():
 			bullet_inst.rotation = s.global_rotation
 			bullet_inst.team = self.team
 
-			main.add_child(bullet_inst)
+			main.call_deferred("add_child", bullet_inst)
 
 			fire_timer.start()
 			anims.play("Fire")

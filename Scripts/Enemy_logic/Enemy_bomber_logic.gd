@@ -61,7 +61,7 @@ func drop_bomb():
 	if is_instance_valid(main):
 		var bomb_inst = bomb.instance()
 		bomb_inst.global_position = self.global_position
-		bomb_inst.initialize(main)
+		bomb_inst.initialize(main, null)
 		main.call_deferred("add_child", bomb_inst)
 
 		sound.play()

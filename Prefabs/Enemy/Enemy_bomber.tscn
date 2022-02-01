@@ -65,7 +65,7 @@ region = Rect2( 448, 0, 64, 64 )
 animations = [ {
 "frames": [ SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": true,
-"name": "Old_bomber",
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -171,7 +171,6 @@ trail_length = 10
 [node name="Sprite" type="AnimatedSprite" parent="."]
 material = SubResource( 38 )
 frames = SubResource( 47 )
-animation = "Old_bomber"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 0, -13, 13, 0, 0, 13, -14, 0 )

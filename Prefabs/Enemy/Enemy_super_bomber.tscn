@@ -1,0 +1,77 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Prefabs/Enemy/Enemy_bomber.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Prefabs/Enemy/Mine.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Enemy_sprites/Mini_enemy_super_bomber.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=37]
+code = "shader_type canvas_item;
+
+uniform vec4 hit_color : hint_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform float hit_strength : hint_range(0.0,1.0) = 0.0;
+
+void fragment() {
+	vec4 custom_color = texture(TEXTURE, UV);
+	custom_color.rgb = mix(custom_color.rgb, hit_color.rgb, hit_strength);
+	COLOR = custom_color;
+}"
+
+[sub_resource type="ShaderMaterial" id=38]
+resource_local_to_scene = true
+shader = SubResource( 37 )
+shader_param/hit_color = Color( 1, 1, 1, 1 )
+shader_param/hit_strength = 0.0
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 3 )
+region = Rect2( 42, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 3 )
+region = Rect2( 84, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 3 )
+region = Rect2( 126, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 3 )
+region = Rect2( 168, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 3 )
+region = Rect2( 210, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 3 )
+region = Rect2( 252, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 3 )
+region = Rect2( 294, 0, 42, 42 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Enemy_super_bomber" instance=ExtResource( 1 )]
+bomb = ExtResource( 2 )
+hp = 10
+max_hp = 10
+wind_speed = 14.0
+score = 25
+
+[node name="Fly_timer" parent="." index="0"]
+wait_time = 3.0
+
+[node name="Sprite" parent="." index="2"]
+material = SubResource( 38 )
+frames = SubResource( 9 )
