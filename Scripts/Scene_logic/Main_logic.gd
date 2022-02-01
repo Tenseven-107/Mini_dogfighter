@@ -23,6 +23,7 @@ onready var musicplayer = $Musicplayer
 
 
 func _ready():
+	SaveState.load_game()
 	goto_main_menu()
 	randomize()
 

@@ -4,10 +4,6 @@ extends Node
 var save_name = "user://Airthrashersave_game.save"
 
 
-func _ready():
-	load_game()
-
-
 func save_game():
 	var save_file = File.new()
 	save_file.open(save_name, File.WRITE)
