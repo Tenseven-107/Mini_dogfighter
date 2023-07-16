@@ -15,6 +15,7 @@ onready var gun2 = $Gun2
 onready var sound_1 = $AudioStreamPlayer2D
 onready var anim = $Anim_player
 onready var hitstop = $Hitstop
+onready var start = $Start
 onready var low_hp = $Low_hp_particles
 
 onready var mini_button_tutorial = $Mini_button_indicators
@@ -31,6 +32,7 @@ export (float) var max_fuel: float = 100
 export (bool) var immortal: bool = false
 export (bool) var fuel_max: bool = true
 
+export (float) var speed: float = 7
 export (float) var wind_speed: float = 7
 export (float) var boost: float = 6
 export (float) var rotation_speed: float = 10
@@ -54,6 +56,9 @@ func _ready():
 	sound_1.playing = true
 	anim.play("Spawn")
 
+	start.interpolate_property(self, "speed", 0, wind_speed, 3, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
+	start.start()
+
 
 func _physics_process(delta):
 	if alive:
@@ -74,7 +79,7 @@ func _physics_process(delta):
 
 			immortal = true
 			fuel -= 0.5
-			position -= transform.y * (wind_speed + boost)
+			position -= transform.y * (speed + boost)
 		elif Input.is_action_pressed("Fire"):
 			gun.attack()
 			gun2.attack()
@@ -83,13 +88,13 @@ func _physics_process(delta):
 			sound_1.pitch_scale = 1
 
 			immortal = false
-			position -= transform.y * (wind_speed / 2)
+			position -= transform.y * (speed / 2)
 		else:
 			flame.hide()
 			sound_1.pitch_scale = 1
 
 			immortal = false
-			position -= transform.y * wind_speed
+			position -= transform.y * speed
 
 		# General
 		rotation += rotation_direction * rotation_speed

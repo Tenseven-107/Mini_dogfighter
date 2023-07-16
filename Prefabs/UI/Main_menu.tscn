@@ -28,6 +28,7 @@ bus = "SFX-UI"
 script = ExtResource( 5 )
 samples = [ ExtResource( 7 ) ]
 random_strategy = 1
+random_volume_range = 0
 random_pitch_range = 0.5
 
 [node name="Press" type="AudioStreamPlayer" parent="."]
@@ -35,6 +36,7 @@ bus = "SFX-UI"
 script = ExtResource( 5 )
 samples = [ ExtResource( 6 ) ]
 random_strategy = 1
+random_volume_range = 0
 random_pitch_range = 0.5
 
 [node name="Main_Control" type="Control" parent="."]

@@ -235,6 +235,7 @@ position = Vector2( 0, 0.5 )
 shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1e-05, 1e-05 )
 frames = SubResource( 8 )
 
 [node name="Appear_tween" type="Tween" parent="."]
@@ -250,6 +251,7 @@ bus = "SFX-2"
 script = ExtResource( 6 )
 samples = [ ExtResource( 5 ) ]
 random_strategy = 1
+random_volume_range = 0
 random_pitch_range = 0.7
 
 [node name="Particles2D2" type="Particles2D" parent="."]

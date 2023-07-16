@@ -66,38 +66,6 @@ shader = SubResource( 21 )
 shader_param/hit_color = Color( 1, 1, 1, 1 )
 shader_param/hit_strength = 0.0
 
-[sub_resource type="AtlasTexture" id=51]
-atlas = ExtResource( 19 )
-region = Rect2( 0, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=52]
-atlas = ExtResource( 19 )
-region = Rect2( 42, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=53]
-atlas = ExtResource( 19 )
-region = Rect2( 84, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=54]
-atlas = ExtResource( 19 )
-region = Rect2( 126, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=55]
-atlas = ExtResource( 19 )
-region = Rect2( 168, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=56]
-atlas = ExtResource( 19 )
-region = Rect2( 210, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=57]
-atlas = ExtResource( 19 )
-region = Rect2( 252, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=58]
-atlas = ExtResource( 19 )
-region = Rect2( 294, 0, 42, 42 )
-
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 2 )
 region = Rect2( 0, 0, 42, 42 )
@@ -160,6 +128,70 @@ region = Rect2( 252, 0, 42, 42 )
 
 [sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 18 )
+region = Rect2( 294, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 17 )
+region = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=44]
+atlas = ExtResource( 17 )
+region = Rect2( 42, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=45]
+atlas = ExtResource( 17 )
+region = Rect2( 84, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=46]
+atlas = ExtResource( 17 )
+region = Rect2( 126, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=47]
+atlas = ExtResource( 17 )
+region = Rect2( 168, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=48]
+atlas = ExtResource( 17 )
+region = Rect2( 210, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 17 )
+region = Rect2( 252, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 17 )
+region = Rect2( 294, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 19 )
+region = Rect2( 0, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 19 )
+region = Rect2( 42, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 19 )
+region = Rect2( 84, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 19 )
+region = Rect2( 126, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 19 )
+region = Rect2( 168, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 19 )
+region = Rect2( 210, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 19 )
+region = Rect2( 252, 0, 42, 42 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 19 )
 region = Rect2( 294, 0, 42, 42 )
 
 [sub_resource type="AtlasTexture" id=59]
@@ -226,45 +258,8 @@ region = Rect2( 276, 0, 46, 46 )
 atlas = ExtResource( 21 )
 region = Rect2( 322, 0, 46, 46 )
 
-[sub_resource type="AtlasTexture" id=43]
-atlas = ExtResource( 17 )
-region = Rect2( 0, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=44]
-atlas = ExtResource( 17 )
-region = Rect2( 42, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=45]
-atlas = ExtResource( 17 )
-region = Rect2( 84, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=46]
-atlas = ExtResource( 17 )
-region = Rect2( 126, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=47]
-atlas = ExtResource( 17 )
-region = Rect2( 168, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=48]
-atlas = ExtResource( 17 )
-region = Rect2( 210, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=49]
-atlas = ExtResource( 17 )
-region = Rect2( 252, 0, 42, 42 )
-
-[sub_resource type="AtlasTexture" id=50]
-atlas = ExtResource( 17 )
-region = Rect2( 294, 0, 42, 42 )
-
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
-"frames": [ SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
-"loop": true,
-"name": "3",
-"speed": 5.0
-}, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ) ],
 "loop": true,
 "name": "0",
@@ -275,6 +270,16 @@ animations = [ {
 "name": "1",
 "speed": 5.0
 }, {
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
+"loop": true,
+"name": "2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ) ],
+"loop": true,
+"name": "3",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ) ],
 "loop": true,
 "name": "4",
@@ -283,11 +288,6 @@ animations = [ {
 "frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ) ],
 "loop": true,
 "name": "5",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
-"loop": true,
-"name": "2",
 "speed": 5.0
 } ]
 
@@ -654,6 +654,8 @@ texture = ExtResource( 15 )
 
 [node name="Hitstop" type="Tween" parent="."]
 
+[node name="Start" type="Tween" parent="."]
+
 [node name="Anim_player" type="AnimationPlayer" parent="."]
 anims/Hit = SubResource( 26 )
 anims/RESET = SubResource( 27 )
@@ -670,10 +672,13 @@ bus = "SFX-1"
 script = ExtResource( 12 )
 samples = [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 11 ) ]
 random_strategy = 1
+random_volume_range = 0
+random_pitch_range = 0
 
 [node name="RandomAudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
 volume_db = 2.0
 bus = "SFX-1"
 script = ExtResource( 12 )
 samples = [ ExtResource( 14 ) ]
+random_volume_range = 0
 random_pitch_range = 1.0
